@@ -1,0 +1,245 @@
+/* 筛选弹窗样式 */
+.bottom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.bottom-modal-content {
+    background-color: white;
+    border-radius: 16px 16px 0 0;
+    padding: 15px;
+    width: 100%;
+    max-height: 70vh;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    animation: slide-up 0.3s ease-out;
+    overflow-y: auto;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.bottom-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.bottom-modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    flex: 1;
+}
+
+.bottom-modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+    position: absolute;
+    right: 0;
+}
+
+.bottom-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.modal-option-group {
+    margin-bottom: 20px;
+}
+
+.modal-option-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.modal-option-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.modal-option-item {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+}
+
+.modal-option-item:hover {
+    background-color: #f5f5f5;
+    border-color: #1976d2;
+}
+
+.modal-option-item.selected {
+    background-color: #1976d2;
+    color: white;
+    border-color: #1976d2;
+}
+
+.bottom-modal-footer {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.bottom-modal-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.bottom-modal-btn.primary {
+    background-color: #1976d2;
+    color: white;
+}
+
+.bottom-modal-btn.secondary {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    #smart-trip .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #smart-trip .measure-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #smart-trip .measure-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+    
+    #smart-trip .marking-tools {
+        justify-content: center;
+    }
+    
+    #smart-trip .photo-selector {
+        justify-content: center;
+    }
+    
+    .search-filters {
+        grid-template-columns: 1fr;
+    }
+    
+    #job-list .job-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    #job-list .job-actions {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+}
+
+.task-detail-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-detail-device {
+    font-size: 12px;
+    color: #666666;
+}
+
+.task-detail-result {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.task-detail-result.true {
+    background-color: #e8f5e8;
+    color: #4CAF50;
+}
+
+.task-detail-result.false {
+    background-color: #fff3e0;
+    color: #ff9800;
+}
+
+/* 应用角标样式 */
+.app-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    min-width: 20px;
+}
+
+/* 未读事件标识 */
+.job-item.unread {
+    border-left: 4px solid #4a90e2;
+    background-color: #e3f2fd;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+    border-color: #4a90e2;
+}
+
+.job-item.unread .job-info h4 {
+    font-weight: 700;
+    color: #1976d2;
+}
+
+.job-item.unread::after {
+    content: '新';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 2px 8px;
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+}

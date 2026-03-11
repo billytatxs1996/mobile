@@ -1,0 +1,166 @@
+/* 作业项列表 */
+.job-list-container {
+    background-color: transparent;
+}
+
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.job-item {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+}
+
+.job-item:hover {
+    border-color: #4a90e2;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-item.selected {
+    border-color: #4a90e2;
+    background-color: #e3f2fd;
+}
+
+.job-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.job-info p {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.job-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* 跳闸事件选择页面样式 */
+#trip-event-selection-page {
+    display: none;
+}
+
+/* 确保#job-list与.job-list样式一致 */
+#job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 确保#job-list与.job-list样式一致 */
+#job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 确保#job-list .job-item与.job-item样式一致 */
+#job-list .job-item {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+}
+
+#job-list .job-item:hover {
+    border-color: #4a90e2;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#job-list .job-item.selected {
+    border-color: #4a90e2;
+    background-color: #e3f2fd;
+}
+
+#job-list .job-info {
+    flex: 1;
+}
+
+#job-list .job-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+#job-list .job-info p {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+#job-list .job-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* 确保#trip-event-list与.job-list样式一致 */
+#trip-event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 确保#trip-event-list .job-item与.job-item样式一致 */
+#trip-event-list .job-item {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+}
+
+#trip-event-list .job-item:hover {
+    border-color: #4a90e2;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#trip-event-list .job-item.selected {
+    border-color: #4a90e2;
+    background-color: #e3f2fd;
+}
+
+#trip-event-list .job-info {
+    flex: 1;
+}
+
+#trip-event-list .job-info h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+#trip-event-list .job-info p {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+#trip-event-list .job-info p:last-child {
+    margin-bottom: 0;
+}

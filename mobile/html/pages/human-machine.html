@@ -1,0 +1,71 @@
+        <!-- 人机协同页面 -->
+        <div id="human-machine" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>人机协同</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 页签导航 -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="pending">待核实任务</button>
+                <button class="tab-btn" data-tab="completed">已完成任务</button>
+            </div>
+            
+            <!-- 内容区域 -->
+            <main class="content human-machine-content">
+                <!-- 待核实任务列表 -->
+                <div class="tab-content active" data-tab="pending">
+                    <div class="job-selection-container">
+                        <!-- 搜索框 -->
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <input type="text" id="pending-task-search" class="form-control" placeholder="任务名称或设备名称模糊搜索">
+                                <button class="filter-btn" id="pending-task-filter-btn">
+                                    <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务列表 -->
+                        <div class="job-list-container">
+                            <div class="job-list" id="pending-task-list">
+                                <!-- 任务项将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 已完成任务列表 -->
+                <div class="tab-content" data-tab="completed">
+                    <div class="job-selection-container">
+                        <!-- 搜索框 -->
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <input type="text" id="completed-task-search" class="form-control" placeholder="任务名称或设备名称模糊搜索">
+                                <button class="filter-btn" id="completed-task-filter-btn">
+                                    <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务列表 -->
+                        <div class="job-list-container">
+                            <div class="job-list" id="completed-task-list">
+                                <!-- 任务项将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>

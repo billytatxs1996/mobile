@@ -1,0 +1,154 @@
+/* 业务看板页面样式（显隐由 base.css .page.active 控制） */
+#business-dashboard.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-dashboard-content {
+    padding: 16px;
+    padding-bottom: 76px;
+}
+
+.dashboard-section {
+    margin-bottom: 24px;
+}
+
+.dashboard-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.dashboard-section-head .section-heading {
+    margin: 0;
+}
+
+.section-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px 0;
+}
+
+.section-desc {
+    font-size: 12px;
+    color: #666;
+    margin: 0 0 14px 0;
+}
+
+/* 时间维度：与重点工作一致，仅右对齐（无左侧统计范围） */
+#business-dashboard .key-work-top-row.biz-dashboard-top-row {
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+/* 变电月度关键指标：远程巡视/操作 站点数、占比 */
+.biz-coverage-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.coverage-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid #e8ecf0;
+}
+.coverage-card.remote-patrol { border-top: 3px solid #4a90e2; }
+.coverage-card.remote-operation { border-top: 3px solid #ff9800; }
+.coverage-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 6px;
+}
+.coverage-ratio {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.coverage-card.remote-patrol .coverage-ratio { color: #4a90e2; }
+.coverage-card.remote-operation .coverage-ratio { color: #e65100; }
+.coverage-card.ratio-good .coverage-ratio { color: #2e7d32; }
+.coverage-card.ratio-mid .coverage-ratio { color: #ed6c02; }
+.coverage-card.ratio-low .coverage-ratio { color: #c62828; }
+.coverage-bar {
+    height: 6px;
+    background: #e8ecf0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+.coverage-fill {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.25s ease;
+}
+.remote-patrol-fill { background: #4a90e2; }
+.remote-operation-fill { background: #ff9800; }
+.coverage-sites {
+    font-size: 12px;
+    color: #666;
+}
+
+/* 业务应用监督评价：巡视/操作/安全 状态一行、数字上色 */
+.biz-task-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.task-state-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid #e8ecf0;
+}
+.task-state-card.patrol { border-left: 4px solid #4a90e2; }
+.task-state-card.operation { border-left: 4px solid #ff9800; }
+.task-state-card.safety { border-left: 4px solid #2e7d32; }
+.task-state-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.task-state-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.task-state-alert {
+    font-size: 12px;
+    color: #c62828;
+    font-weight: 600;
+    background: #ffebee;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+.task-state-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    font-size: 13px;
+    color: #666;
+}
+.task-state-row .t.pending { color: #666; }
+.task-state-row .t.pending span { color: #ed6c02; font-weight: 600; }
+.task-state-row .t.doing span { color: #1565c0; font-weight: 600; }
+.task-state-row .t.review span { color: #c62828; font-weight: 600; }
+.task-state-row .t.done span { color: #2e7d32; font-weight: 600; }
+
+/* 质量看板页面样式（显隐由 base.css .page.active 控制） */
+#quality-dashboard.active {
+    display: flex;
+    flex-direction: column;
+}
+
+#quality-dashboard .content {
+    padding-bottom: 76px !important;
+    padding-top: 16px;
+}

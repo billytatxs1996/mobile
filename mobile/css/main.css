@@ -1,0 +1,22 @@
+/* 移动工作台 - 样式入口（由 build-split.js 生成） */
+@import url('base.css');
+@import url('layout-header.css');
+@import url('pages/workbench.css');
+@import url('pages/matters.css');
+@import url('pages/smart-safety.css');
+@import url('pages/smart-safety-tabs.css');
+@import url('components/modals.css');
+@import url('components/bottom-modals.css');
+@import url('components/forms.css');
+@import url('pages/human-machine.css');
+@import url('pages/quality-dashboard.css');
+@import url('pages/verification.css');
+@import url('components/defect-modal.css');
+@import url('pages/key-work.css');
+@import url('pages/business-dashboard.css');
+@import url('pages/quality-dashboard-2.css');
+@import url('pages/patrol-progress.css');
+@import url('pages/smart-trip.css');
+@import url('pages/job-selection.css');
+@import url('components/filter-modals.css');
+@import url('pages/human-machine-detail.css');

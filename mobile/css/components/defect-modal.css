@@ -1,0 +1,413 @@
+/* 缺陷点位核实弹窗样式 */
+.bottom-modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+}
+
+.bottom-modal-header {
+    background-color: white;
+    z-index: 10;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+    transition: all 0.2s ease;
+}
+
+.progress-step.hidden {
+    display: none;
+}
+
+.progress-line {
+    width: 32px;
+    height: 2px;
+    background-color: #e0e0e0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.progress-line.hidden {
+    display: none;
+}
+
+.step-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.progress-step.active .step-number {
+    background-color: #4a90e2;
+    color: white;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.step-name {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.progress-step.active .step-name {
+    color: #4a90e2;
+    font-weight: 500;
+}
+
+.progress-step.active + .progress-line {
+    background-color: #4a90e2;
+}
+
+.bottom-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.verification-step {
+    display: none;
+}
+
+.verification-step.active {
+    display: block;
+}
+
+.defect-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.defect-device, .defect-location, .defect-description {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+}
+
+.defect-image-container {
+    margin: 12px 0;
+}
+
+.defect-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.step-instruction {
+    padding: 12px;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    border-left: 4px solid #2196f3;
+    margin-top: 16px;
+}
+
+.step-instruction p {
+    margin: 0;
+    font-size: 14px;
+    color: #1976d2;
+}
+
+.field-verification {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.photo-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.uploaded-photos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.uploaded-photos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.uploaded-photo {
+    position: relative;
+}
+
+.uploaded-photo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.remove-photo {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.remove-photo:hover {
+    background-color: #e84118;
+}
+
+.value-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.value-inputs .form-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.value-inputs input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+.value-unit {
+    font-size: 14px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.value-unit-select {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    flex: 1;
+    min-width: 120px;
+}
+
+/* 拍照指南样式 */
+.photo-guidelines,
+.measurement-guidelines,
+.verification-guidelines,
+.result-guidelines,
+.level-guidelines,
+.notes-guidelines {
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+}
+
+.photo-guidelines p,
+.measurement-guidelines p,
+.verification-guidelines p,
+.result-guidelines p,
+.level-guidelines p,
+.notes-guidelines p {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    color: #333;
+}
+
+.photo-guidelines ul,
+.measurement-guidelines ul,
+.verification-guidelines ul,
+.result-guidelines ul,
+.level-guidelines ul,
+.notes-guidelines ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.photo-guidelines li,
+.measurement-guidelines li,
+.verification-guidelines li,
+.result-guidelines li,
+.level-guidelines li,
+.notes-guidelines li {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+/* 环境信息样式 */
+.environment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.environment-info .form-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.environment-info input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 步骤说明样式增强 */
+.step-instruction ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+}
+
+.step-instruction li {
+    font-size: 13px;
+    color: #1976d2;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+/* 确认信息样式增强 */
+.confirmation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.confirmation-label {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.confirmation-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    word-break: break-word;
+    align-self: flex-start;
+}
+
+.confirmation-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.result-judgment {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.submit-confirmation {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.confirmation-content {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.confirmation-content h4 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.confirmation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.confirmation-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.confirmation-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.confirmation-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.step-btn {
+    transition: all 0.2s ease;
+}
+
+.step-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

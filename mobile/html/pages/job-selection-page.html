@@ -1,0 +1,56 @@
+        <!-- 作业项选择页面 -->
+        <div id="job-selection-page" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>选择作业项</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content">
+                <div class="job-selection-container">
+                    <!-- 搜索框 -->
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="job-search" class="form-control" placeholder="作业项名称或工作票号模糊搜索">
+                            <button class="filter-btn" id="filter-btn">
+                                <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 作业项列表 -->
+                    <div class="job-list-container">
+                        <div class="job-list" id="job-list">
+                            <div class="job-item" data-job-id="1" data-job-name="10kV开关柜检修项目" data-status="进行中">
+                                <div class="job-info">
+                                    <h4>10kV开关柜检修项目</h4>
+                                    <p>工作票号：WD-2026-02-001</p>
+                                    <p>作业时间：2026-02-11 09:00 - 17:00</p>
+                                    <p>状态：进行中</p>
+                                </div>
+                            </div>
+                            <div class="job-item" data-job-id="2" data-job-name="主变压器预防性试验" data-status="待开始">
+                                <div class="job-info">
+                                    <h4>主变压器预防性试验</h4>
+                                    <p>工作票号：WD-2026-02-002</p>
+                                    <p>作业时间：2026-02-12 09:00 - 17:00</p>
+                                    <p>状态：待开始</p>
+                                </div>
+                            </div>
+                            <div class="job-item" data-job-id="3" data-job-name="GIS设备例行维护" data-status="已完成">
+                                <div class="job-info">
+                                    <h4>GIS设备例行维护</h4>
+                                    <p>工作票号：WD-2026-02-003</p>
+                                    <p>作业时间：2026-02-10 09:00 - 17:00</p>
+                                    <p>状态：已完成</p>
+                                </div>
+                            </div>

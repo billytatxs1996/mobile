@@ -1,0 +1,545 @@
+/* 核心指标卡片 */
+.core-metrics-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #4a90e2;
+}
+
+.core-metrics-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0 0 16px 0;
+}
+
+.core-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.core-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.core-metric.critical {
+    background-color: #f0f8ff;
+    border-left: 3px solid #4a90e2;
+}
+
+.core-metric.warning {
+    background-color: #fff8e1;
+    border-left: 3px solid #ff9800;
+}
+
+.core-metric.info {
+    background-color: #f1f8e9;
+    border-left: 3px solid #4caf50;
+}
+
+.core-metric-label {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.core-metric-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333333;
+}
+
+.core-metric-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-indicator.healthy {
+    background-color: #4caf50;
+}
+
+.status-indicator.warning {
+    background-color: #ff9800;
+}
+
+.status-indicator.good {
+    background-color: #4a90e2;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #666666;
+    font-weight: 500;
+}
+
+/* 通用部分样式 */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+}
+
+.action-btn {
+    background: none;
+    border: 1px solid #4a90e2;
+    color: #4a90e2;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #4a90e2;
+    color: white;
+}
+
+/* 重点关注终端 */
+.priority-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.priority-terminals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.priority-terminal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease;
+}
+
+.priority-terminal-item:hover {
+    background-color: #f0f0f0;
+}
+
+.priority-terminal-info {
+    flex: 1;
+}
+
+.priority-terminal-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.priority-terminal-stats {
+    font-size: 12px;
+    color: #666666;
+}
+
+.priority-terminal-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.priority-terminal-health {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4caf50;
+}
+
+.priority-terminal-defects {
+    font-size: 12px;
+    color: #ff5252;
+    font-weight: 500;
+}
+
+/* 缺陷趋势 */
+.trend-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.time-filter {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid #e0e0e0;
+    color: #666666;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.trend-chart {
+    height: 180px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.trend-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4caf50, #ff9800, #f44336);
+}
+
+.trend-chart-content {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.trend-chart-title {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 12px;
+}
+
+.trend-chart-stats {
+    font-size: 12px;
+    color: #999999;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.trend-chart-stats strong {
+    color: #333333;
+}
+
+.trend-chart-stats .up {
+    color: #f44336;
+    font-weight: 500;
+}
+
+.trend-chart-stats .down {
+    color: #4caf50;
+    font-weight: 500;
+}
+
+.trend-chart-stats .stable {
+    color: #ff9800;
+    font-weight: 500;
+}
+
+.trend-mini-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 80px;
+    margin-bottom: 8px;
+    padding: 0 10px;
+}
+
+.trend-bar {
+    flex: 1;
+    margin: 0 2px;
+    background-color: #4a90e2;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.3s ease;
+}
+
+.trend-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.trend-label {
+    font-size: 10px;
+    color: #999999;
+    text-align: center;
+    flex: 1;
+}
+
+/* 终端详细指标 */
+.details-section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.detail-item {
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* 终端状态指示器 */
+.terminal-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.status-badge.healthy {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+
+.status-badge.warning {
+    background-color: #fff3e0;
+    color: #ff9800;
+}
+
+.status-badge.critical {
+    background-color: #ffebee;
+    color: #f44336;
+}
+
+/* 响应式调整 */
+@media (max-width: 480px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .core-metric {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .core-metric-value {
+        font-size: 18px;
+    }
+    
+    .core-metric-status {
+        align-self: flex-end;
+    }
+    
+    .priority-terminal-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .priority-terminal-status {
+        align-self: flex-end;
+    }
+}
+
+/* 加载动画 */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .modal-option-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bottom-modal-content {
+        padding: 15px;
+    }
+    
+    .calendar-day {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    .calendar-nav-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .calendar-title {
+        font-size: 14px;
+    }
+    
+    .task-item {
+        padding: 12px;
+    }
+    
+    .task-title {
+        font-size: 13px;
+    }
+    
+    .task-content {
+        font-size: 12px;
+    }
+    
+    .metrics-grid,
+    .terminal-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-details {
+        flex-direction: column;
+    }
+}
+
+/* 角色切换弹窗样式 */
+.role-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.role-modal.active {
+    display: flex;
+}
+
+.role-modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.role-modal-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.role-item {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-item:hover {
+    background-color: #f5f5f5;
+    border-color: #4a90e2;
+}
+
+.role-item span {
+    font-size: 14px;
+    color: #333;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

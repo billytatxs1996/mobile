@@ -1,0 +1,380 @@
+        <!-- 质量看板页面 -->
+        <div id="quality-dashboard" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>质量看板</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content quality-content">
+                <!-- 核心业务指标 -->
+                <div class="business-metrics-section">
+                    <h2 class="section-title">核心业务指标</h2>
+                    <div class="business-metrics-grid">
+                        <div class="business-metric-card primary">
+                            <div class="metric-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">终端健康度</div>
+                                <div class="metric-value" id="health-score">96.5%</div>
+                                <div class="metric-status">
+                                    <span class="status-indicator healthy"></span>
+                                    <span class="status-text">健康</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="business-metric-card warning">
+                            <div class="metric-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">未处理缺陷</div>
+                                <div class="metric-value" id="open-defects">3</div>
+                                <div class="metric-status">
+                                    <span class="status-indicator warning"></span>
+                                    <span class="status-text">需关注</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="business-metric-card success">
+                            <div class="metric-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <div class="metric-label">缺陷处理率</div>
+                                <div class="metric-value" id="defect-resolution-rate">92%</div>
+                                <div class="metric-status">
+                                    <span class="status-indicator good"></span>
+                                    <span class="status-text">良好</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 重点关注终端 -->
+                <div class="priority-terminals-section">
+                    <div class="section-header">
+                        <h2 class="section-title">重点关注终端</h2>
+                        <button class="action-btn">查看全部</button>
+                    </div>
+                    <div class="priority-terminals-list" id="priority-terminals-list">
+                        <!-- 重点终端将通过JS动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 缺陷趋势分析 -->
+                <div class="defect-trend-section">
+                    <div class="section-header">
+                        <h2 class="section-title">缺陷趋势分析</h2>
+                        <div class="time-filter">
+                            <button class="filter-btn active">本月</button>
+                            <button class="filter-btn">季度</button>
+                            <button class="filter-btn">年度</button>
+                        </div>
+                    </div>
+                    <div class="defect-trend-container" id="defect-trend-chart">
+                        <!-- 趋势图表将通过JS动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 业务运营指标 -->
+                <div class="operation-metrics-section">
+                    <div class="section-header">
+                        <h2 class="section-title">业务运营指标</h2>
+                    </div>
+                    <div class="operation-metrics-grid">
+                        <div class="operation-metric-item">
+                            <div class="metric-label">终端在线率</div>
+                            <div class="metric-value" id="online-rate">96.5%</div>
+                        </div>
+                        <div class="operation-metric-item">
+                            <div class="metric-label">活跃终端数</div>
+                            <div class="metric-value" id="active-terminals">500</div>
+                        </div>
+                        <div class="operation-metric-item">
+                            <div class="metric-label">本月缺陷数</div>
+                            <div class="metric-value" id="monthly-defects">12</div>
+                        </div>
+                        <div class="operation-metric-item">
+                            <div class="metric-label">平均处理时长</div>
+                            <div class="metric-value" id="avg-resolution-time">4.5h</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 底部弹窗容器 -->
+    <div class="bottom-modal" id="permitter-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择许可人</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">许可人</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="李明">李明</div>
+                        <div class="modal-option-item" data-value="王建国">王建国</div>
+                        <div class="modal-option-item" data-value="张师傅">张师傅</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="bottom-modal" id="progress-status-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择当前状态</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">状态</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="准备中">准备中</div>
+                        <div class="modal-option-item" data-value="进行中">进行中</div>
+                        <div class="modal-option-item" data-value="已完成">已完成</div>
+                        <div class="modal-option-item" data-value="暂停">暂停</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="exception-type-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择异常类型</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">异常类型</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="设备异常">设备异常</div>
+                        <div class="modal-option-item" data-value="人员异常">人员异常</div>
+                        <div class="modal-option-item" data-value="环境异常">环境异常</div>
+                        <div class="modal-option-item" data-value="其他异常">其他异常</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="completion-time-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择终结时间</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn">&lt;</button>
+                            <h4 class="calendar-title">2026年2月</h4>
+                            <button class="calendar-nav-btn">&gt;</button>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <span>日</span>
+                            <span>一</span>
+                            <span>二</span>
+                            <span>三</span>
+                            <span>四</span>
+                            <span>五</span>
+                            <span>六</span>
+                        </div>
+                    </div>
+                    <div class="calendar-days">
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day active">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                    </div>
+                    <div class="time-selector">
+                        <div class="time-section">
+                            <label>开始时间</label>
+                            <div class="time-picker">
+                                <select class="hour-select start-hour">
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>
+                                <span>:</span>
+                                <select class="minute-select start-minute">
+                                    <option value="00">00</option>
+                                    <option value="05">05</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="35">35</option>
+                                    <option value="40">40</option>
+                                    <option value="45">45</option>
+                                    <option value="50">50</option>
+                                    <option value="55">55</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="duration-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择授权时长</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">时长</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="1天">1天</div>
+                        <div class="modal-option-item" data-value="3天">3天</div>
+                        <div class="modal-option-item" data-value="7天">7天</div>
+                        <div class="modal-option-item" data-value="自定义">自定义</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="vehicle-type-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择车辆类型</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">类型</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="轿车">轿车</div>
+                        <div class="modal-option-item" data-value="货车">货车</div>
+                        <div class="modal-option-item" data-value="工程车">工程车</div>
+                        <div class="modal-option-item" data-value="其他">其他</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="access-area-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择授权区域</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">区域</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="主控室">主控室</div>
+                        <div class="modal-option-item" data-value="设备区">设备区</div>
+                        <div class="modal-option-item" data-value="库房">库房</div>
+                        <div class="modal-option-item" data-value="其他">其他</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>

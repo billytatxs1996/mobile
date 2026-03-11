@@ -1,0 +1,108 @@
+        <!-- 告警页面 -->
+        <div id="matters" class="page">
+            <header class="header">
+                <div class="header-center">
+                    <h1>告警中心</h1>
+                </div>
+                <div class="header-right">
+                    <button class="mark-all-read">
+                        <img src="image/common/全部已读.png" alt="全部已读" style="max-height: 24px; width: auto;">
+                    </button>
+                </div>
+            </header>
+            
+            <main class="content">
+                <!-- 告警分类卡片 -->
+                <div class="alert-cards">
+                    <!-- 安全告警 -->
+                    <div class="alert-card">
+                        <div class="alert-card-icon-container">
+                                <div class="alert-card-icon safety">
+                                    <img src="image/alerts/安全告警.png" alt="安全告警" width="24" height="24">
+                                </div>
+                                <span class="alert-badge">0</span>
+                            </div>
+                        <div class="alert-card-content-wrapper">
+                            <div class="alert-card-title">
+                                <h3>安全告警</h3>
+                                <span class="alert-card-time">暂无</span>
+                            </div>
+                            <p class="alert-card-content">暂无安全告警</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 巡视告警 -->
+                    <div class="alert-card">
+                        <div class="alert-card-icon-container">
+                                <div class="alert-card-icon patrol">
+                                    <img src="image/alerts/巡视告警.png" alt="巡视告警" width="24" height="24">
+                                </div>
+                                <span class="alert-badge">3</span>
+                            </div>
+                        <div class="alert-card-content-wrapper">
+                            <div class="alert-card-title">
+                                <h3>巡视告警</h3>
+                                <span class="alert-card-time">18分钟前</span>
+                            </div>
+                            <p class="alert-card-content">【巡视提醒】又到了每周巡视时间，请按时完成巡视任务，确保设备正常运行。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 跳闸告警 -->
+                    <div class="alert-card">
+                        <div class="alert-card-icon-container">
+                                <div class="alert-card-icon trip">
+                                    <img src="image/alerts/跳闸告警.png" alt="跳闸告警" width="24" height="24">
+                                </div>
+                                <span class="alert-badge">1</span>
+                            </div>
+                        <div class="alert-card-content-wrapper">
+                            <div class="alert-card-title">
+                                <h3>跳闸告警</h3>
+                                <span class="alert-card-time">03-12 13:45</span>
+                            </div>
+                            <p class="alert-card-content">3号线路发生跳闸，请及时检查故障原因并处理。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 告警详情弹窗 -->
+                <div class="alert-detail-modal" id="alert-detail-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>消息列表</h3>
+                            <button class="close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="detail-item">
+                                <div class="detail-header">
+                                    <span class="detail-tag danger">紧急</span>
+                                    <span class="detail-title">巡视任务提醒</span>
+                                </div>
+                                <p class="detail-content">提醒：已到达巡视时间，请按时完成巡视任务。</p>
+                                <div class="detail-footer">
+                                    <span class="detail-time">7月15日 早上 7:34</span>
+                                    <button class="confirm-btn">确认</button>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-header">
+                                    <span class="detail-tag danger">紧急</span>
+                                    <span class="detail-title">巡视任务提醒</span>
+                                </div>
+                                <p class="detail-content">提醒：已到达巡视时间，请按时完成巡视任务。</p>
+                                <div class="detail-footer">
+                                    <span class="detail-time">早上 7:34</span>
+                                    <button class="confirm-btn">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>

@@ -1,0 +1,82 @@
+        <!-- 巡视进度指标页面 -->
+        <div id="patrol-progress" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>巡视进度指标</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <main class="content patrol-progress-content">
+                <!-- 总体进度卡片 -->
+                <div class="progress-overview">
+                    <div class="overview-card">
+                        <div class="overview-card-header">
+                            <h3>总体进度</h3>
+                        </div>
+                        <div class="overview-card-body">
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 65%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span>65%</span>
+                                <span>已完成 / 总任务</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 关键指标卡片 -->
+                <div class="metrics-cards">
+                    <div class="metric-card">
+                        <div class="metric-value">12</div>
+                        <div class="metric-label">待核实任务</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">24</div>
+                        <div class="metric-label">已完成任务</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">8</div>
+                        <div class="metric-label">属实缺陷</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">16</div>
+                        <div class="metric-label">不属实缺陷</div>
+                    </div>
+                </div>
+                
+                <!-- 趋势图表 -->
+                <div class="chart-section">
+                    <h3 class="section-title">任务完成趋势</h3>
+                    <div class="chart-container">
+                        <canvas id="completion-trend-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 设备类型分布 -->
+                <div class="chart-section">
+                    <h3 class="section-title">缺陷设备分布</h3>
+                    <div class="chart-container">
+                        <canvas id="device-distribution-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 任务详情列表 -->
+                <div class="task-detail-section">
+                    <h3 class="section-title">最近任务完成情况</h3>
+                    <div class="task-detail-list">
+                        <!-- 任务详情将在这里动态生成 -->
+                    </div>
+                </div>
+            </main>

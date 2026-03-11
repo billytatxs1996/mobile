@@ -1,0 +1,333 @@
+/* 头部样式 */
+/* 工作台页面头部 */
+#workbench .header {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 54px;
+    justify-content: space-between;
+}
+
+#workbench .header-left .date {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0 16px;
+}
+
+#workbench .header-right .greeting p {
+    margin: 0 0px;
+    font-size: 14px;
+}
+
+/* 告警中心页面头部 */
+#matters .header {
+    background: linear-gradient(135deg, #ffc361, #ff9d00);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 54px;
+    justify-content: center;
+    position: relative;
+}
+
+#matters .header-center h1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+#matters .header-right {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#matters .mark-all-read {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+#matters .mark-all-read:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 小智页面头部（跟随页面布局，由内容区域单独滚动） */
+#xiaozhi .header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 54px;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+#xiaozhi .header-center h1 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+#xiaozhi .header-left, #xiaozhi .header-right {
+    margin: 0 16px;
+}
+
+#xiaozhi .current-scenario {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 历史对话侧边栏头部 */
+.history-sidebar .sidebar-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 54px;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    padding: 0;
+}
+
+.history-sidebar .sidebar-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 16px;
+}
+
+.history-sidebar .sidebar-header button {
+    margin: 0 16px;
+}
+
+.header:not(:has(.header-left)):not(:has(.header-right)) {
+    justify-content: center;
+}
+
+.header:has(.header-left):has(.header-right) {
+    justify-content: space-between;
+}
+
+.header-center {
+    flex: 1;
+    text-align: center;
+}
+
+.header-center h1 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.mark-all-read {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.mark-all-read:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header-left .date {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.header-right .greeting {
+    text-align: right;
+    margin: 0;
+}
+
+.header-right .greeting p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.header-right .icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* 小智页面头部 */
+.xiaozhi-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 54px;
+    display: flex;
+    align-items: center;
+}
+
+/* 场景切换下拉菜单 */
+.scenario-selector {
+    position: relative;
+    margin-top: 8px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scenario-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.scenario-header:hover {
+    opacity: 0.8;
+}
+
+.current-scenario {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.scenario-header svg {
+    transition: transform 0.2s ease;
+}
+
+.scenario-header.active svg {
+    transform: rotate(180deg);
+}
+
+.scenario-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    max-width: 90vw;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
+    padding: 8px;
+    z-index: 1000;
+    display: none;
+}
+
+.scenario-dropdown.active {
+    display: block;
+}
+
+.scenario-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 4px;
+    min-height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scenario-item:last-child {
+    margin-bottom: 0;
+}
+
+.scenario-item:hover {
+    background-color: #f5f5f5;
+}
+
+.scenario-item.active {
+    background-color: #e3f2fd;
+    border: 1px solid #2196f3;
+}
+
+.scenario-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.scenario-desc {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.3;
+}
+
+.xiaozhi-header .header-left {
+    flex: 1;
+}
+
+.xiaozhi-header .header-center {
+    flex: 2;
+    text-align: center;
+}
+
+.xiaozhi-header .header-right {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.header-icon {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* 头部标签页 */
+.header-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.tab-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background-color: white;
+    color: #4a90e2;
+}

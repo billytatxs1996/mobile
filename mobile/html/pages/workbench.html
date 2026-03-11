@@ -1,0 +1,142 @@
+        <!-- 工作台页面 -->
+        <div id="workbench" class="page active">
+            <header class="header">
+                <div class="header-left">
+                    <p class="date" id="current-time"></p>
+                </div>
+                <div class="header-right">
+                    <div class="greeting">
+                        <p id="welcome-message">Hello! 小鱼儿，你好！</p>
+                    </div>
+                    <button class="role-switch-btn">
+                        <img src="image/common/切换角色.png" alt="切换角色" width="24" height="24">
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 角色切换弹窗 -->
+            <div class="role-modal" id="role-modal">
+                <div class="role-modal-content">
+                    <h3>切换角色</h3>
+                    <div class="role-list">
+                        <div class="role-item" data-role="负责人员" data-name="张三">
+                            <span>负责人员 - 张三</span>
+                        </div>
+                        <div class="role-item" data-role="许可人员" data-name="李四">
+                            <span>许可人员 - 李四</span>
+                        </div>
+                        <div class="role-item" data-role="管理人员" data-name="王五">
+                            <span>管理人员 - 王五</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <main class="content">
+                <!-- 管理决策 -->
+                <div class="app-section">
+                    <div style="margin-bottom: 16px;">
+                        <h2 class="section-title">管理决策</h2>
+                    </div>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon yellow">
+                                <img src="image/workbench/重点工作.png" alt="重点工作" width="24" height="24">
+                            </div>
+                            <span class="app-name">重点工作</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon blue">
+                                <img src="image/workbench/业务看板.png" alt="业务看板" width="24" height="24">
+                            </div>
+                            <span class="app-name">业务看板</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon green">
+                                <img src="image/workbench/质量看板.png" alt="质量看板" width="24" height="24">
+                            </div>
+                            <span class="app-name">质量看板</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能安全 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能安全</h2>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon blue">
+                                <img src="image/workbench/工作票.png" alt="工作票" width="24" height="24">
+                            </div>
+                            <span class="app-name">工作票</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon green">
+                                <img src="image/workbench/安措执行.png" alt="安措执行" width="24" height="24">
+                            </div>
+                            <span class="app-name">安措执行</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon orange">
+                                <img src="image/workbench/作业过程.png" alt="作业过程" width="24" height="24">
+                            </div>
+                            <span class="app-name">作业过程</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon teal">
+                                <img src="image/workbench/作业终结.png" alt="作业终结" width="24" height="24">
+                            </div>
+                            <span class="app-name">作业终结</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能巡视 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能巡视</h2>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon teal">
+                                <img src="image/workbench/人机协同.png" alt="人机协同" width="24" height="24">
+                                <span class="app-badge" id="human-machine-badge">0</span>
+                            </div>
+                            <span class="app-name">人机协同</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon purple">
+                                <img src="image/workbench/进度指标.png" alt="进度指标" width="24" height="24">
+                            </div>
+                            <span class="app-name">进度指标</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能跳闸 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能跳闸</h2>
+                    <div class="app-grid">
+                        <div class="app-item" data-app="trip-report">
+                            <div class="app-icon purple">
+                                <img src="image/workbench/跳闸快报.png" alt="跳闸快报" width="24" height="24">
+                                <span class="app-badge" id="trip-report-badge"></span>
+                            </div>
+                            <span class="app-name">跳闸快报</span>
+                        </div>
+                        <div class="app-item" data-app="fault-confirmation">
+                            <div class="app-icon orange">
+                                <img src="image/workbench/故障确认.png" alt="故障确认" width="24" height="24">
+                                <span class="app-badge" id="fault-confirmation-badge"></span>
+                            </div>
+                            <span class="app-name">故障确认</span>
+                        </div>
+                        <div class="app-item" data-app="fault-handling">
+                            <div class="app-icon green">
+                                <img src="image/workbench/故障处理.png" alt="故障处理" width="24" height="24">
+                                <span class="app-badge" id="fault-handling-badge"></span>
+                            </div>
+                            <span class="app-name">故障处理</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>

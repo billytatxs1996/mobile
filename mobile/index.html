@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>移动工作台</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div class="app-container">
+
+        <!-- 工作台页面 -->
+        <div id="workbench" class="page active">
+            <header class="header">
+                <div class="header-left">
+                    <p class="date" id="current-time"></p>
+                </div>
+                <div class="header-right">
+                    <div class="greeting">
+                        <p id="welcome-message">Hello! 小鱼儿，你好！</p>
+                    </div>
+                    <button class="role-switch-btn">
+                        <img src="image/common/切换角色.png" alt="切换角色" width="24" height="24">
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 角色切换弹窗（列表由 js/render-lists.js 根据 PAGE_DATA.roles 渲染） -->
+            <div class="role-modal" id="role-modal">
+                <div class="role-modal-content">
+                    <h3>切换角色</h3>
+                    <div class="role-list"></div>
+                </div>
+            </div>
+            
+            <main class="content">
+                <!-- 管理决策 -->
+                <div class="app-section">
+                    <div style="margin-bottom: 16px;">
+                        <h2 class="section-title">管理决策</h2>
+                    </div>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon yellow">
+                                <img src="image/workbench/重点工作.png" alt="重点工作" width="24" height="24">
+                            </div>
+                            <span class="app-name">重点工作</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon blue">
+                                <img src="image/workbench/业务看板.png" alt="业务看板" width="24" height="24">
+                            </div>
+                            <span class="app-name">业务看板</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon green">
+                                <img src="image/workbench/质量看板.png" alt="质量看板" width="24" height="24">
+                            </div>
+                            <span class="app-name">质量看板</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能安全 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能安全</h2>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon blue">
+                                <img src="image/workbench/工作票.png" alt="工作票" width="24" height="24">
+                                <span class="app-badge" id="work-order-badge"></span>
+                            </div>
+                            <span class="app-name">工作票</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon green">
+                                <img src="image/workbench/授权申请.png" alt="授权申请" width="24" height="24">
+                                <span class="app-badge" id="authorization-badge"></span>
+                            </div>
+                            <span class="app-name">授权申请</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon green">
+                                <img src="image/workbench/安措执行.png" alt="安措执行" width="24" height="24">
+                                <span class="app-badge" id="safety-measure-badge"></span>
+                            </div>
+                            <span class="app-name">安措执行</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon orange">
+                                <img src="image/workbench/作业过程.png" alt="作业过程" width="24" height="24">
+                                <span class="app-badge" id="operation-process-badge"></span>
+                            </div>
+                            <span class="app-name">作业过程</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon teal">
+                                <img src="image/workbench/作业终结.png" alt="作业终结" width="24" height="24">
+                                <span class="app-badge" id="operation-end-badge"></span>
+                            </div>
+                            <span class="app-name">作业终结</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能巡视 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能巡视</h2>
+                    <div class="app-grid">
+                        <div class="app-item">
+                            <div class="app-icon teal">
+                                <img src="image/workbench/人机协同.png" alt="人机协同" width="24" height="24">
+                                <span class="app-badge" id="human-machine-badge">0</span>
+                            </div>
+                            <span class="app-name">人机协同</span>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-icon purple">
+                                <img src="image/workbench/进度指标.png" alt="进度指标" width="24" height="24">
+                            </div>
+                            <span class="app-name">进度指标</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 智能跳闸 -->
+                <div class="app-section">
+                    <h2 class="section-title">智能跳闸</h2>
+                    <div class="app-grid">
+                        <div class="app-item" data-app="trip-report">
+                            <div class="app-icon purple">
+                                <img src="image/workbench/跳闸快报.png" alt="跳闸快报" width="24" height="24">
+                                <span class="app-badge" id="trip-report-badge"></span>
+                            </div>
+                            <span class="app-name">跳闸快报</span>
+                        </div>
+                        <div class="app-item" data-app="fault-confirmation">
+                            <div class="app-icon orange">
+                                <img src="image/workbench/故障确认.png" alt="故障确认" width="24" height="24">
+                                <span class="app-badge" id="fault-confirmation-badge"></span>
+                            </div>
+                            <span class="app-name">故障确认</span>
+                        </div>
+                        <div class="app-item" data-app="fault-handling">
+                            <div class="app-icon green">
+                                <img src="image/workbench/故障处理.png" alt="故障处理" width="24" height="24">
+                                <span class="app-badge" id="fault-handling-badge"></span>
+                            </div>
+                            <span class="app-name">故障处理</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 智能安全页面 -->
+        <div id="smart-safety" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>智能安全</h1>
+                </div>
+                <div class="header-right">
+                    <button class="switch-project-btn">
+                        <img src="image/common/切换项目.png" alt="切换项目" width="24" height="24">
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 页签导航 -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="work-order">工作票</button>
+                <button class="tab-btn" data-tab="authorization">授权申请</button>
+                <button class="tab-btn" data-tab="safety-measure">安措执行</button>
+                <button class="tab-btn" data-tab="operation-process">作业过程</button>
+                <button class="tab-btn" data-tab="operation-end">作业终结</button>
+            </div>
+            
+            <!-- 内容区域 -->
+            <main class="content smart-safety-content">
+                <!-- 工作票页面 -->
+                <div class="tab-content active" data-tab="work-order">
+                    <div class="work-order-content">
+                        <!-- 工作票内容将在选择作业项后显示 -->
+                    </div>
+                </div>
+                
+                <!-- 授权申请页面 -->
+                <div class="tab-content" data-tab="authorization">
+                    <div class="authorization-content">
+                        <!-- 授权申请内容将在选择作业项后显示 -->
+                    </div>
+                </div>
+                
+                <!-- 安措执行页面 -->
+                <div class="tab-content" data-tab="safety-measure">
+                    <div class="safety-measure-content">
+                        <!-- 安措执行内容将在选择作业项后显示 -->
+                    </div>
+                </div>
+                
+                <!-- 作业过程页面 -->
+                <div class="tab-content" data-tab="operation-process">
+                    <div class="operation-process-content">
+                        <!-- 作业过程内容将在选择作业项后显示 -->
+                    </div>
+                </div>
+                
+                <!-- 作业终结页面 -->
+                <div class="tab-content" data-tab="operation-end">
+                    <div class="operation-end-content">
+                        <!-- 作业终结内容将在选择作业项后显示 -->
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+
+        <!-- 筛选弹窗 -->
+        <div class="bottom-modal" id="filter-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">筛选条件</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">作业时间</div>
+                        <div class="form-group">
+                            <div id="filter-date" class="form-control select-box" data-modal="completion-time-modal" data-modal-title="选择作业时间">请选择作业时间</div>
+                        </div>
+                    </div>
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">作业状态</div>
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="全部">全部</div>
+                            <div class="modal-option-item" data-value="进行中">进行中</div>
+                            <div class="modal-option-item" data-value="待开始">待开始</div>
+                            <div class="modal-option-item" data-value="已完成">已完成</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary" id="filter-reset">重置</button>
+                    <button class="bottom-modal-btn primary" id="filter-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 人机协同页面 -->
+        <div id="human-machine" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>人机协同</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 页签导航 -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="pending">待核实任务</button>
+                <button class="tab-btn" data-tab="completed">已完成任务</button>
+            </div>
+            
+            <!-- 内容区域 -->
+            <main class="content human-machine-content">
+                <!-- 待核实任务列表 -->
+                <div class="tab-content active" data-tab="pending">
+                    <div class="job-selection-container">
+                        <!-- 搜索框 -->
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <input type="text" id="pending-task-search" class="form-control" placeholder="任务名称或设备名称模糊搜索">
+                                <button class="filter-btn" id="pending-task-filter-btn">
+                                    <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务列表 -->
+                        <div class="job-list-container">
+                            <div class="job-list" id="pending-task-list">
+                                <!-- 任务项将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 已完成任务列表 -->
+                <div class="tab-content" data-tab="completed">
+                    <div class="job-selection-container">
+                        <!-- 搜索框 -->
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <input type="text" id="completed-task-search" class="form-control" placeholder="任务名称或设备名称模糊搜索">
+                                <button class="filter-btn" id="completed-task-filter-btn">
+                                    <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务列表 -->
+                        <div class="job-list-container">
+                            <div class="job-list" id="completed-task-list">
+                                <!-- 任务项将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 人机协同筛选弹窗 -->
+        <div class="bottom-modal" id="human-machine-filter-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">筛选条件</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">任务时间</div>
+                        <div class="form-group">
+                            <div id="hm-filter-date" class="form-control select-box" data-modal="completion-time-modal" data-modal-title="选择任务时间">请选择任务时间</div>
+                        </div>
+                    </div>
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">严重程度</div>
+                        <div class="modal-option-list hm-filter-severity">
+                            <div class="modal-option-item" data-value="全部">全部</div>
+                            <div class="modal-option-item" data-value="一般">一般</div>
+                            <div class="modal-option-item" data-value="较严重">较严重</div>
+                            <div class="modal-option-item" data-value="严重">严重</div>
+                        </div>
+                    </div>
+                    <div class="modal-option-group" id="hm-filter-verification-group">
+                        <div class="modal-option-title">核实结果</div>
+                        <div class="modal-option-list hm-filter-verification">
+                            <div class="modal-option-item" data-value="全部">全部</div>
+                            <div class="modal-option-item" data-value="属实">属实</div>
+                            <div class="modal-option-item" data-value="不属实">不属实</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary" id="hm-filter-reset">重置</button>
+                    <button class="bottom-modal-btn primary" id="hm-filter-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 人机协同详情页面 -->
+        <div id="human-machine-detail" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>任务详情</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <main class="content human-machine-detail-content">
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h2 class="detail-title" id="detail-device">设备名称</h2>
+                        <span class="detail-time" id="detail-time">时间</span>
+                    </div>
+                    
+                    <div class="detail-info">
+                        <div class="info-item">
+                            <span class="info-label">点位位置：</span>
+                            <span class="info-value" id="detail-location">位置信息</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">可能缺陷：</span>
+                            <span class="info-value" id="detail-description">缺陷描述</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">分析结果：</span>
+                            <span class="info-value" id="detail-analysis">分析结果</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">严重程度：</span>
+                            <span class="info-value" id="detail-severity">严重程度</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-image-section">
+                        <h3 class="section-subtitle">缺陷图片</h3>
+                        <div class="image-container" id="detail-image-container">
+                            <!-- 图片将在这里动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-verification-section" id="detail-verification-section">
+                        <h3 class="section-subtitle">现场核实</h3>
+                        <div class="verification-form" id="verification-form">
+                            <!-- 现场确认照片上传 -->
+                            <div class="form-group">
+                                <label class="form-label">现场确认照片</label>
+                                <div class="file-upload-container" id="photo-upload-container">
+                                    <input type="file" id="verification-photo" class="file-upload-input" accept="image/*" multiple>
+                                    <label for="verification-photo" class="file-upload-label">
+                                        <img src="image/common/拍照.png" alt="上传照片" width="24" height="24">
+                                        <span>点击上传现场确认照片</span>
+                                    </label>
+                                    <div class="uploaded-photos" id="uploaded-photos">
+                                        <!-- 上传的照片将在这里动态生成 -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 现场分析 -->
+                            <div class="form-group">
+                                <label class="form-label">现场分析</label>
+                                <textarea id="field-analysis" class="form-textarea" placeholder="请详细描述现场缺陷情况、分析结果及处理建议..."></textarea>
+                            </div>
+                            
+                            <!-- 核实备注 -->
+                            <div class="form-group">
+                                <label class="form-label">核实备注</label>
+                                <textarea id="verification-notes" class="form-textarea" placeholder="请填写核实备注..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-result-section" id="detail-result-section">
+                        <h3 class="section-subtitle">核实结果</h3>
+                        <div class="result-info" id="detail-result-info">
+                            <!-- 核实结果将在这里动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-actions" id="detail-actions">
+                        <!-- 操作按钮将在这里动态生成 -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 巡视进度指标页面 -->
+        <div id="patrol-progress" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>人机协同进度</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 内容区域：移动端优先，少占位、多信息 -->
+            <main class="content patrol-progress-content">
+                <!-- 顶部：一行完成率 + 细进度条，不抢空间 -->
+                <!-- 顶部：数据分析标题 + 时间维度切换 -->
+                <div class="progress-analysis-head">
+                    <h2 class="progress-section-title">数据分析</h2>
+                    <div class="progress-time-filter">
+                        <button type="button" class="progress-time-filter-btn active" data-range="week">本周</button>
+                        <button type="button" class="progress-time-filter-btn" data-range="month">本月</button>
+                    </div>
+                </div>
+
+                <section class="progress-top">
+                    <div class="progress-top-row">
+                        <span class="progress-top-label">完成率</span>
+                        <span class="progress-top-value" id="progress-rate">0</span><span class="progress-top-pct">%</span>
+                        <span class="progress-top-count" id="progress-desc">0/0 任务</span>
+                    </div>
+                    <div class="progress-top-bar">
+                        <div class="progress-top-fill" id="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </section>
+                
+                <!-- 一行：待核实 / 已完成 / 属实 / 不属实 -->
+                <section class="progress-metrics progress-metrics-row">
+                    <div class="progress-metric progress-metric-pending">
+                        <span class="progress-metric-value" id="metric-pending">0</span>
+                        <span class="progress-metric-label">待核实</span>
+                    </div>
+                    <div class="progress-metric progress-metric-done">
+                        <span class="progress-metric-value" id="metric-completed">0</span>
+                        <span class="progress-metric-label">已完成</span>
+                    </div>
+                    <div class="progress-metric progress-metric-true">
+                        <span class="progress-metric-value" id="metric-true">0</span>
+                        <span class="progress-metric-label">属实</span>
+                    </div>
+                    <div class="progress-metric progress-metric-false">
+                        <span class="progress-metric-value" id="metric-false">0</span>
+                        <span class="progress-metric-label">不属实</span>
+                    </div>
+                </section>
+                
+                <div class="progress-tip" id="progress-tip"></div>
+                
+                <!-- 数据分析：简短结论 + 小饼图 -->
+                <section class="progress-analysis">
+                    <div class="progress-analysis-inner">
+                        <ul class="progress-analysis-list" id="progress-analysis"></ul>
+                        <div class="progress-pie-wrap">
+                            <div class="progress-pie" id="progress-pie"></div>
+                            <div class="progress-pie-legend" id="progress-pie-legend"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 最近完成任务 + 属实/不属实 筛选 -->
+                <section class="progress-recent">
+                    <div class="progress-recent-head">
+                        <h2 class="progress-section-title">最近完成任务</h2>
+                        <div class="progress-filter">
+                            <button type="button" class="progress-filter-btn active" data-filter="all">全部</button>
+                            <button type="button" class="progress-filter-btn" data-filter="true">属实</button>
+                            <button type="button" class="progress-filter-btn" data-filter="false">不属实</button>
+                        </div>
+                    </div>
+                    <div class="progress-task-list" id="progress-task-list"></div>
+                </section>
+            </main>
+        </div>
+
+        <!-- 智能跳闸页面 -->
+        <div id="smart-trip" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>智能跳闸</h1>
+                </div>
+                <div class="header-right">
+                    <button class="switch-project-btn">
+                        <img src="image/common/切换项目.png" alt="切换项目" width="24" height="24">
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 页签导航 -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="trip-report">跳闸快报</button>
+                <button class="tab-btn" data-tab="fault-confirmation">故障确认</button>
+                <button class="tab-btn" data-tab="fault-handling">故障处理</button>
+            </div>
+            
+            <!-- 内容区域 -->
+            <main class="content smart-safety-content">
+                <!-- 跳闸快报页面 -->
+                <div class="tab-content active" data-tab="trip-report">
+                    <div class="trip-report-content">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>基本信息</h3>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸时间：</span>
+                                        <span class="info-value trip-event-time"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸设备：</span>
+                                        <span class="info-value trip-equipment"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸类型：</span>
+                                        <span class="info-value trip-type"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">故障电流：</span>
+                                        <span class="info-value trip-current"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">状态：</span>
+                                        <span class="info-value trip-status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>跳闸详情</h3>
+                                <div class="work-content">
+                                    <p class="trip-description"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>跳闸波形图</h3>
+                                <div class="trip-waveform">
+                                    <img src="" alt="跳闸波形图" class="waveform-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故障确认页面 -->
+                <div class="tab-content" data-tab="fault-confirmation">
+                    <div class="fault-confirmation-content">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- 故障拍照部分 -->
+                            <div class="work-order-section">
+                                <h3>故障拍照</h3>
+                                <div class="measure-list">
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>故障点照片</h4>
+                                            <p>拍摄故障点的清晰照片，确保能看清故障情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>设备状态照片</h4>
+                                            <p>拍摄设备的整体状态照片，记录设备当前情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>现场环境照片</h4>
+                                            <p>拍摄现场环境照片，记录周围环境情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 反馈记录部分 -->
+                            <div class="work-order-section">
+                                <h3>反馈记录</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="fault-type">故障类型</label>
+                                        <div id="fault-type" class="form-control select-box" data-modal="fault-type-modal">请选择故障类型</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fault-description">故障描述</label>
+                                        <textarea id="fault-description" class="form-control" rows="4" placeholder="请详细描述故障情况"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fault-level">故障等级</label>
+                                        <div id="fault-level" class="form-control select-box" data-modal="fault-level-modal">请选择故障等级</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="processing-suggestion">处理建议</label>
+                                        <textarea id="processing-suggestion" class="form-control" rows="3" placeholder="请输入处理建议"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 图片标记部分（选择照片样式与安措执行、作业终结拍照一致） -->
+                            <div class="work-order-section">
+                                <h3>图片标记</h3>
+                                <div class="image-marking">
+                                    <div class="measure-list">
+                                        <div class="measure-item">
+                                            <div class="measure-info">
+                                                <h4>选择照片</h4>
+                                                <p>从已上传的故障照片中选择需要标记的图片</p>
+                                            </div>
+                                            <div class="measure-actions">
+                                                <button class="photo-btn">
+                                                    <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                    选择照片
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>标记工具</label>
+                                        <div class="marking-tools">
+                                            <button class="btn btn-secondary">矩形</button>
+                                            <button class="btn btn-secondary">圆形</button>
+                                            <button class="btn btn-secondary">箭头</button>
+                                            <button class="btn btn-secondary">文字</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>标记说明</label>
+                                        <textarea class="form-control" rows="3" placeholder="请输入标记说明"></textarea>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn btn-primary">保存标记</button>
+                                        <button class="btn btn-secondary">保存草稿</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故障处理页面 -->
+                <div class="tab-content" data-tab="fault-handling">
+                    <div class="fault-handling-content">
+                        <!-- 已处理：只读结果（选中“已处理”事件时显示） -->
+                        <div id="fault-handling-readonly" class="work-order-container" style="display: none;">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            <div class="work-order-section">
+                                <h3>处理方案</h3>
+                                <div class="info-grid">
+                                    <div class="info-item full-width">
+                                        <span class="info-label">处理方案：</span>
+                                        <span class="info-value">对设备进行全面检修，更换损坏的内部部件，重新进行调试和测试。</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">处理人员：</span>
+                                        <span class="info-value">张师傅、李师傅</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">处理时间：</span>
+                                        <span class="info-value">2026-02-11 10:00 - 2026-02-11 16:00</span>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">所需设备/材料：</span>
+                                        <span class="info-value">新部件、工具套装、测试仪器</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="work-order-section">
+                                <h3>处理过程记录</h3>
+                                <div class="info-grid">
+                                    <div class="info-item full-width">
+                                        <span class="info-label">处理过程：</span>
+                                        <span class="info-value">1. 断开设备电源，进行安全隔离；2. 拆卸设备外壳，检查内部损坏情况；3. 更换损坏的部件；4. 重新组装设备；5. 进行功能测试和调试；6. 验证设备运行正常。</span>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">处理前照片：</span>
+                                        <span class="info-value">已上传</span>
+                                        <div class="photo-display">
+                                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=电力设备处理前照片，显示设备故障状态&image_size=landscape_4_3" alt="处理前照片" style="width: 100%; margin-top: 10px; border-radius: 4px; cursor: pointer;">
+                                        </div>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">处理中照片：</span>
+                                        <span class="info-value">已上传</span>
+                                        <div class="photo-display">
+                                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=电力设备处理中照片，显示工作人员正在检修设备&image_size=landscape_4_3" alt="处理中照片" style="width: 100%; margin-top: 10px; border-radius: 4px; cursor: pointer;">
+                                        </div>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">处理后照片：</span>
+                                        <span class="info-value">已上传</span>
+                                        <div class="photo-display">
+                                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=电力设备处理后照片，显示设备已恢复正常状态&image_size=landscape_4_3" alt="处理后照片" style="width: 100%; margin-top: 10px; border-radius: 4px; cursor: pointer;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="work-order-section">
+                                <h3>处理结果</h3>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">处理结果：</span>
+                                        <span class="info-value">成功</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">恢复时间：</span>
+                                        <span class="info-value">2026-02-11 16:30</span>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">结果描述：</span>
+                                        <span class="info-value">设备已成功修复，经过测试验证，各项指标均正常，已恢复正常运行。</span>
+                                    </div>
+                                    <div class="info-item full-width">
+                                        <span class="info-label">备注：</span>
+                                        <span class="info-value">建议加强设备日常巡检，定期进行预防性维护，避免类似故障再次发生。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 未确认/待处理：可填写表单 -->
+                        <div id="fault-handling-form-container">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理方案部分 -->
+                            <div class="work-order-section">
+                                <h3>处理方案</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="handling-scheme">处理方案</label>
+                                        <textarea id="handling-scheme" class="form-control" rows="4" placeholder="请详细描述故障处理方案"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-person">处理人员</label>
+                                        <input type="text" id="handling-person" class="form-control" placeholder="请输入处理人员姓名">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-time">处理时间</label>
+                                        <div id="handling-time" class="form-control select-box" data-modal="completion-time-modal" data-modal-title="选择处理时间">请选择处理时间</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="required-equipment">所需设备/材料</label>
+                                        <textarea id="required-equipment" class="form-control" rows="2" placeholder="请输入所需设备或材料"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理过程记录部分 -->
+                            <div class="work-order-section">
+                                <h3>处理过程记录</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="process-record">处理过程</label>
+                                        <textarea id="process-record" class="form-control" rows="5" placeholder="请详细记录故障处理过程"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="process-photos">处理过程照片</label>
+                                        <div class="measure-list">
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理前照片</h4>
+                                                    <p>拍摄处理前的设备状态照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理中照片</h4>
+                                                    <p>拍摄处理过程中的照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理后照片</h4>
+                                                    <p>拍摄处理完成后的设备状态照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理结果部分 -->
+                            <div class="work-order-section">
+                                <h3>处理结果</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="handling-result">处理结果</label>
+                                        <div id="handling-result" class="form-control select-box" data-modal="handling-result-modal">请选择处理结果</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result-description">结果描述</label>
+                                        <textarea id="result-description" class="form-control" rows="3" placeholder="请详细描述处理结果"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="restoration-time">恢复时间</label>
+                                        <div id="restoration-time" class="form-control select-box" data-modal="completion-time-modal" data-modal-title="选择恢复时间">请选择恢复时间</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-notes">备注</label>
+                                        <textarea id="handling-notes" class="form-control" rows="2" placeholder="请输入其他备注信息"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 表单操作按钮 -->
+                            <div class="work-order-section">
+                                <div class="form-actions">
+                                    <button class="btn btn-secondary">保存草稿</button>
+                                    <button class="btn btn-primary">提交处理结果</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 跳闸事件筛选弹窗 -->
+        <div class="bottom-modal" id="trip-event-filter-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">筛选条件</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">跳闸时间</div>
+                        <div class="form-group">
+                            <div id="trip-filter-date" class="form-control select-box" data-modal="completion-time-modal" data-modal-title="选择跳闸时间">请选择跳闸时间</div>
+                        </div>
+                    </div>
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">跳闸状态</div>
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="全部">全部</div>
+                            <div class="modal-option-item" data-value="未确认">未确认</div>
+                            <div class="modal-option-item" data-value="待处理">待处理</div>
+                            <div class="modal-option-item" data-value="已处理">已处理</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary" id="trip-filter-reset">重置</button>
+                    <button class="bottom-modal-btn primary" id="trip-filter-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 处理结果选择弹窗 -->
+        <div class="bottom-modal" id="handling-result-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">处理结果</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="成功">成功</div>
+                            <div class="modal-option-item" data-value="部分成功">部分成功</div>
+                            <div class="modal-option-item" data-value="失败">失败</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn primary" id="handling-result-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 故障类型选择弹窗 -->
+        <div class="bottom-modal" id="fault-type-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">故障类型</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="设备故障">设备故障</div>
+                            <div class="modal-option-item" data-value="保护动作">保护动作</div>
+                            <div class="modal-option-item" data-value="通信异常">通信异常</div>
+                            <div class="modal-option-item" data-value="其他">其他</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn primary" id="fault-type-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 故障等级选择弹窗 -->
+        <div class="bottom-modal" id="fault-level-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">故障等级</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="一般">一般</div>
+                            <div class="modal-option-item" data-value="重要">重要</div>
+                            <div class="modal-option-item" data-value="紧急">紧急</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn primary" id="fault-level-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 缺陷点位核实弹窗 -->
+        <div class="bottom-modal" id="defect-verification-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <div class="progress-container">
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-name">缺陷信息</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-name">现场核实</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-name">测量记录</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="4">
+                            <span class="step-number">4</span>
+                            <span class="step-name">结果判定</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="5">
+                            <span class="step-number">5</span>
+                            <span class="step-name">提交确认</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-body">
+                    <!-- 步骤1：缺陷信息查看 -->
+                    <div class="verification-step active" data-step="1">
+                        <div class="defect-info">
+                            <div class="form-group">
+                                <label>设备名称</label>
+                                <div class="defect-device"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷位置</label>
+                                <div class="defect-location"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷描述</label>
+                                <div class="defect-description"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>机巡结果</label>
+                                <div class="defect-image-container">
+                                    <img class="defect-image" src="" alt="缺陷图片">
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请仔细查看缺陷信息，了解机巡发现的问题，为现场核实做好准备。</p>
+                                <p><strong>操作要求：</strong></p>
+                                <ul>
+                                    <li>确认设备名称和位置信息是否正确</li>
+                                    <li>仔细阅读缺陷描述，了解问题的具体表现</li>
+                                    <li>查看机巡拍摄的照片，了解缺陷的外观特征</li>
+                                    <li>准备好必要的工具和设备，如测量仪器、相机等</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤2：现场核实 -->
+                    <div class="verification-step" data-step="2">
+                        <div class="field-verification">
+                            <div class="form-group">
+                                <label>现场照片</label>
+                                <div class="photo-upload">
+                                    <button class="btn btn-secondary">
+                                        <img src="image/safety/安措拍照.png" alt="拍照" width="20" height="20">
+                                        拍摄现场照片
+                                    </button>
+                                    <div class="uploaded-photos">
+                                        <!-- 上传的照片将显示在这里 -->
+                                    </div>
+                                </div>
+                                <div class="photo-guidelines">
+                                    <p><strong>拍照要求：</strong></p>
+                                    <ul>
+                                        <li>拍摄缺陷的整体外观（全景）</li>
+                                        <li>拍摄缺陷的细节特征（特写）</li>
+                                        <li>拍摄缺陷周围的环境和相关设备</li>
+                                        <li>确保照片清晰，光线充足</li>
+                                        <li>建议拍摄2-3张不同角度的照片</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>现场环境</label>
+                                <div class="environment-info">
+                                    <div class="form-control">
+                                        <input type="text" class="environment-temperature" placeholder="环境温度（°C）">
+                                    </div>
+                                    <div class="form-control">
+                                        <input type="text" class="environment-humidity" placeholder="环境湿度（%）">
+                                    </div>
+                                    <div class="form-control">
+                                        <input type="text" class="environment-light" placeholder="光照条件">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请到达现场进行核实，拍摄实际情况照片，记录现场环境信息。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3：测量记录 -->
+                    <div class="verification-step" data-step="3">
+                        <div class="measurement-record">
+                            <div class="form-group">
+                                <label>缺陷数值</label>
+                                <div class="value-inputs">
+                                    <div class="form-control">
+                                        <input type="number" class="defect-value" placeholder="请输入缺陷相关数值（如压力、温度等）">
+                                        <span class="value-unit">单位：</span>
+                                        <select class="value-unit-select">
+                                            <option value="">请选择单位</option>
+                                            <option value="MPa">MPa（压力）</option>
+                                            <option value="°C">°C（温度）</option>
+                                            <option value="mm">mm（尺寸）</option>
+                                            <option value="Ω">Ω（电阻）</option>
+                                            <option value="V">V（电压）</option>
+                                            <option value="A">A（电流）</option>
+                                            <option value="dB">dB（噪音）</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="measurement-guidelines">
+                                    <p><strong>测量要求：</strong></p>
+                                    <ul>
+                                        <li>使用合适的测量仪器，确保精度</li>
+                                        <li>按照操作规程进行测量</li>
+                                        <li>记录测量的具体位置和条件</li>
+                                        <li>如有必要，进行多次测量取平均值</li>
+                                        <li>对于不同类型的缺陷，测量对应的关键参数</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>验证方法</label>
+                                <div class="verification-method">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="目视检查">目视检查</div>
+                                        <div class="modal-option-item" data-value="仪器测量">仪器测量</div>
+                                        <div class="modal-option-item" data-value="功能测试">功能测试</div>
+                                        <div class="modal-option-item" data-value="其他方法">其他方法</div>
+                                    </div>
+                                </div>
+                                <div class="verification-guidelines">
+                                    <p><strong>验证方法说明：</strong></p>
+                                    <ul>
+                                        <li><strong>目视检查：</strong>通过肉眼观察缺陷的外观特征</li>
+                                        <li><strong>仪器测量：</strong>使用专业仪器测量相关参数</li>
+                                        <li><strong>功能测试：</strong>测试设备的运行状态和功能</li>
+                                        <li><strong>其他方法：</strong>根据实际情况选择合适的验证方法</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请测量缺陷相关数值，选择使用的验证方法，并详细记录测量结果。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤4：结果判定 -->
+                    <div class="verification-step" data-step="4">
+                        <div class="result-judgment">
+                            <div class="form-group">
+                                <label>核实结果</label>
+                                <div class="verification-result">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="属实">属实</div>
+                                        <div class="modal-option-item" data-value="不属实">不属实</div>
+                                        <div class="modal-option-item" data-value="部分属实">部分属实</div>
+                                    </div>
+                                </div>
+                                <div class="result-guidelines">
+                                    <p><strong>结果判定标准：</strong></p>
+                                    <ul>
+                                        <li><strong>属实：</strong>现场核实情况与机巡描述一致，存在明显缺陷</li>
+                                        <li><strong>不属实：</strong>现场核实情况与机巡描述不一致，无明显缺陷</li>
+                                        <li><strong>部分属实：</strong>现场存在类似问题，但程度或表现与机巡描述有差异</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷等级</label>
+                                <div class="defect-level">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="紧急">紧急</div>
+                                        <div class="modal-option-item" data-value="重要">重要</div>
+                                        <div class="modal-option-item" data-value="一般">一般</div>
+                                    </div>
+                                </div>
+                                <div class="level-guidelines">
+                                    <p><strong>缺陷等级标准：</strong></p>
+                                    <ul>
+                                        <li><strong>紧急：</strong>缺陷严重影响设备运行安全，可能导致设备故障或事故</li>
+                                        <li><strong>重要：</strong>缺陷对设备运行有一定影响，需要及时处理</li>
+                                        <li><strong>一般：</strong>缺陷对设备运行影响较小，可在计划检修时处理</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>核实备注</label>
+                                <textarea class="form-control verification-notes" rows="4" placeholder="请详细描述核实过程和发现的问题"></textarea>
+                                <div class="notes-guidelines">
+                                    <p><strong>备注要求：</strong></p>
+                                    <ul>
+                                        <li>详细描述现场核实的具体过程</li>
+                                        <li>记录测量的具体数值和结果</li>
+                                        <li>描述缺陷的具体表现和特征</li>
+                                        <li>说明使用的验证方法和工具</li>
+                                        <li>记录现场环境条件</li>
+                                        <li>如有必要，提出处理建议</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>根据现场核实情况，判断缺陷是否属实，评估缺陷等级，并详细记录核实过程。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤5：提交确认 -->
+                    <div class="verification-step" data-step="5">
+                        <div class="submit-confirmation">
+                            <div class="confirmation-content">
+                                <h4>核实信息确认</h4>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">设备名称：</span>
+                                    <span class="confirmation-value device-name"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷位置：</span>
+                                    <span class="confirmation-value location"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷描述：</span>
+                                    <span class="confirmation-value description"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">核实结果：</span>
+                                    <span class="confirmation-value result"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷等级：</span>
+                                    <span class="confirmation-value level"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">现场照片：</span>
+                                    <span class="confirmation-value photo-count">0张</span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷数值：</span>
+                                    <span class="confirmation-value value"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">验证方法：</span>
+                                    <span class="confirmation-value method"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">核实备注：</span>
+                                    <span class="confirmation-value notes"></span>
+                                </div>
+                                <div class="step-instruction">
+                                    <p><strong>步骤说明：</strong>请确认所有核实信息准确无误，提交后将完成本次缺陷核实任务。</p>
+                                    <p><strong>提交前检查：</strong></p>
+                                    <ul>
+                                        <li>确认所有必填信息已填写完整</li>
+                                        <li>确认现场照片已上传且清晰可见</li>
+                                        <li>确认测量数值准确无误</li>
+                                        <li>确认核实结果和缺陷等级判定合理</li>
+                                        <li>确认备注信息详细完整</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary">取消</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="next">下一步</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="back" style="display: none;">上一步</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="submit" style="display: none;">提交核实结果</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 告警页面 -->
+        <div id="matters" class="page">
+            <header class="header">
+                <div class="header-center">
+                    <h1>告警中心</h1>
+                </div>
+                <div class="header-right">
+                    <button class="mark-all-read">
+                        <img src="image/common/全部已读.png" alt="全部已读" style="max-height: 24px; width: auto;">
+                    </button>
+                </div>
+            </header>
+            
+            <main class="content">
+                <!-- 告警分类卡片（由 js/render-lists.js 根据 PAGE_DATA.alertCards 渲染） -->
+                <div class="alert-cards"></div>
+                <!-- 告警详情弹窗（消息列表由 alerts.js 按分类动态填充，此处仅保留空容器） -->
+                <div class="alert-detail-modal" id="alert-detail-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>消息列表</h3>
+                            <button class="close-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 小智页面 -->
+        <div id="xiaozhi" class="page">
+            <!-- 历史对话侧边栏 -->
+            <div class="history-sidebar" id="history-sidebar">
+                <div class="sidebar-header">
+                    <h3>历史对话</h3>
+                    <button class="close-sidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- 历史列表由 js/render-lists.js 根据 PAGE_DATA.xiaozhiHistory 渲染 -->
+                <div class="history-list"></div>
+            </div>
+            
+            <div class="xiaozhi-container">
+                <header class="header xiaozhi-header">
+                    <div class="header-left">
+                        <button class="menu-btn" id="menu-btn">
+                            <img src="image/common/历史对话.png" alt="历史对话" width="24" height="24">
+                        </button>
+                    </div>
+                    <div class="header-center">
+                        <!-- 场景切换下拉菜单 -->
+                        <div class="scenario-selector">
+                            <div class="scenario-header" id="scenario-header">
+                                <span class="current-scenario">巡视应用</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="scenario-dropdown" id="scenario-dropdown">
+                                <div class="scenario-item active" data-scenario="巡视应用">
+                                    <span class="scenario-name">巡视应用</span>
+                                    <span class="scenario-desc">用于设备巡视、故障排查等场景</span>
+                                </div>
+                                <div class="scenario-item" data-scenario="分析应用">
+                                    <span class="scenario-name">分析应用</span>
+                                    <span class="scenario-desc">用于数据分析、趋势预测等场景</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <button class="header-icon new-chat-btn">
+                            <img src="image/common/新增对话.png" alt="新增对话" width="24" height="24">
+                        </button>
+                    </div>
+                </header>
+                
+                <main class="content xiaozhi-content">
+                    <!-- 聊天区域 -->
+                    <div class="chat-area">
+                        <!-- 聊天消息 -->
+                        <div class="chat-messages">
+                            <!-- 系统消息 -->
+                            <div class="message-container ai-message-container">
+                                <div class="message-icon">
+                                    <img src="image/common/机器人.png" alt="机器人" width="32" height="32">
+                                </div>
+                                <div class="system-message">
+                                    <p>你好！我是小智，有什么可以帮助你的吗？</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- 场景快捷功能 -->
+                    <div class="scenario-quick-functions">
+                        <div class="quick-functions patrol-app">
+                            <button class="quick-btn">巡视数据问答</button>
+                            <button class="quick-btn">巡视计划创建</button>
+                            <button class="quick-btn">巡视计划查找</button>
+                            <button class="quick-btn">巡视结果审核</button>
+                        </div>
+                        <div class="quick-functions analysis-app" style="display: none;">
+                            <button class="quick-btn">监测点趋势分析</button>
+                            <button class="quick-btn">设备运行评价</button>
+                            <button class="quick-btn">故障预测分析</button>
+                            <button class="quick-btn">处置结果分析</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 消息输入框 -->
+                    <div class="message-input">
+                        <button class="input-icon">
+                            <img src="image/common/语音输入.png" alt="语音输入" width="20" height="20">
+                        </button>
+                        <input type="text" placeholder="发消息或按住说话..." class="input-field">
+                        <button class="input-icon">
+                            <img src="image/common/拍照.png" alt="拍照" width="20" height="20">
+                        </button>
+                        <button class="input-icon">
+                            <img src="image/common/添加附件.png" alt="添加附件" width="20" height="20">
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- 作业项选择弹窗 -->
+        <div class="job-selection-modal" id="job-selection-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>选择作业项</h3>
+                    <button class="close-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="job-list"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel-btn">取消</button>
+                    <button class="confirm-btn">确认选择</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作业项选择页面 -->
+        <div id="job-selection-page" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>选择作业项</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content">
+                <div class="job-selection-container">
+                    <!-- 搜索框 -->
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="job-search" class="form-control" placeholder="作业项名称或工作票号模糊搜索">
+                            <button class="filter-btn" id="filter-btn">
+                                <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 作业项列表（由 js/render-lists.js 根据 js/data/page-data.js 渲染） -->
+                    <div class="job-list-container">
+                        <div class="job-list" id="job-list"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- 跳闸事件选择页面 -->
+        <div id="trip-event-selection-page" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>选择跳闸事件</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content">
+                <div class="job-selection-container">
+                    <!-- 搜索框 -->
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <input type="text" id="trip-event-search" class="form-control" placeholder="跳闸事件名称或设备名称模糊搜索">
+                            <button class="filter-btn" id="trip-event-filter-btn">
+                                <img src="image/common/作业项筛选.png" alt="筛选" width="24" height="24">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 跳闸事件列表（由 smart-trip-data.js 根据数据渲染） -->
+                    <div class="job-list-container">
+                        <div class="job-list" id="trip-event-list"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- 重点工作页面 -->
+        <div id="key-work" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>重点工作</h1>
+                </div>
+                <div class="header-right"></div>
+            </header>
+            <main class="content key-work-content">
+                <!-- 页面右上：统计范围（左）+ 时间维度切换（右） -->
+                <div class="key-work-top-row">
+                    <div class="key-work-scope">
+                        <span class="scope-label">统计范围</span>
+                        <span class="scope-value key-work-site-count">0</span>
+                        <span class="scope-unit">个站点</span>
+                    </div>
+                    <div class="key-work-time-filter">
+                        <button type="button" class="time-filter-btn active" data-range="today">今日</button>
+                        <button type="button" class="time-filter-btn" data-range="week">本周</button>
+                        <button type="button" class="time-filter-btn" data-range="month">本月</button>
+                    </div>
+                </div>
+                <!-- 三类作业：每卡先标“站点数”，再标“任务数”与“任务完成率” -->
+                <div class="stats-cards key-work-cards">
+                    <div class="stat-card patrol">
+                        <div class="stat-card-header">
+                            <span class="stat-icon patrol">巡</span>
+                            <h3>巡视作业</h3>
+                            <span class="stat-dimension stat-sites">站点数 <span class="patrol-sites">0</span></span>
+                        </div>
+                        <div class="stat-task-rate">
+                            <span class="stat-rate-label">任务完成率</span>
+                            <div class="stat-row">
+                                <span class="stat-value patrol-completion-rate">0%</span>
+                                <div class="stat-progress"><span class="stat-progress-fill patrol" style="width: 0%"></span></div>
+                            </div>
+                        </div>
+                        <div class="stat-details stat-details-row">
+                            <span class="stat-detail-item completed">已完成 <span class="patrol-completed">0</span></span>
+                            <span class="stat-detail-item pending">待完成 <span class="patrol-pending">0</span></span>
+                            <span class="stat-detail-item overdue">逾期 <span class="patrol-overdue">0</span></span>
+                        </div>
+                    </div>
+                    <div class="stat-card operation">
+                        <div class="stat-card-header">
+                            <span class="stat-icon operation">操</span>
+                            <h3>操作作业</h3>
+                            <span class="stat-dimension stat-sites">站点数 <span class="operation-sites">0</span></span>
+                        </div>
+                        <div class="stat-task-rate">
+                            <span class="stat-rate-label">任务完成率</span>
+                            <div class="stat-row">
+                                <span class="stat-value operation-completion-rate">0%</span>
+                                <div class="stat-progress"><span class="stat-progress-fill operation" style="width: 0%"></span></div>
+                            </div>
+                        </div>
+                        <div class="stat-details stat-details-row">
+                            <span class="stat-detail-item completed">已完成 <span class="operation-completed">0</span></span>
+                            <span class="stat-detail-item pending">待完成 <span class="operation-pending">0</span></span>
+                            <span class="stat-detail-item overdue">逾期 <span class="operation-overdue">0</span></span>
+                        </div>
+                    </div>
+                    <div class="stat-card safety">
+                        <div class="stat-card-header">
+                            <span class="stat-icon safety">安</span>
+                            <h3>安全作业</h3>
+                            <span class="stat-dimension stat-sites">站点数 <span class="safety-sites">0</span></span>
+                        </div>
+                        <div class="stat-task-rate">
+                            <span class="stat-rate-label">任务完成率</span>
+                            <div class="stat-row">
+                                <span class="stat-value safety-completion-rate">0%</span>
+                                <div class="stat-progress"><span class="stat-progress-fill safety" style="width: 0%"></span></div>
+                            </div>
+                        </div>
+                        <div class="stat-details stat-details-row">
+                            <span class="stat-detail-item completed">已完成 <span class="safety-completed">0</span></span>
+                            <span class="stat-detail-item pending">待完成 <span class="safety-pending">0</span></span>
+                            <span class="stat-detail-item overdue">逾期 <span class="safety-overdue">0</span></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 最近作业 -->
+                <div class="recent-jobs">
+                    <h2 class="section-heading">最近作业</h2>
+                    <div class="job-list">
+                        <div class="job-item">
+                            <div class="job-info">
+                                <h4>10kV线路巡视</h4>
+                                <p class="job-meta">巡视作业 · 截止 2026-02-15</p>
+                            </div>
+                            <span class="job-status completed">已完成</span>
+                        </div>
+                        <div class="job-item">
+                            <div class="job-info">
+                                <h4>35kV母线操作</h4>
+                                <p class="job-meta">操作作业 · 截止 2026-02-16</p>
+                            </div>
+                            <span class="job-status in-progress">进行中</span>
+                        </div>
+                        <div class="job-item">
+                            <div class="job-info">
+                                <h4>安全检查</h4>
+                                <p class="job-meta">安全作业 · 截止 2026-02-17</p>
+                            </div>
+                            <span class="job-status pending">待执行</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <!-- 业务看板页面 -->
+        <div id="business-dashboard" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>业务看板</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content business-dashboard-content">
+                <!-- 变电月度关键指标看板：远程巡视/操作 站点数、占比 -->
+                <section class="dashboard-section">
+                    <div class="dashboard-section-head">
+                        <h2 class="section-heading">变电月度关键指标</h2>
+                        <div class="key-work-time-filter">
+                            <button type="button" class="time-filter-btn active" data-range="week">本周</button>
+                            <button type="button" class="time-filter-btn" data-range="month">本月</button>
+                        </div>
+                    </div>
+                    <div class="biz-coverage-cards">
+                        <div class="coverage-card remote-patrol">
+                            <div class="coverage-label">远程巡视站点数、占比</div>
+                            <div class="coverage-ratio"><span class="remote-patrol-ratio">0</span>%</div>
+                            <div class="coverage-bar"><span class="coverage-fill remote-patrol-fill" style="width: 0%"></span></div>
+                            <div class="coverage-sites"><span class="remote-patrol-sites">0</span>/<span class="remote-patrol-total">0</span> 站</div>
+                        </div>
+                        <div class="coverage-card remote-operation">
+                            <div class="coverage-label">远程操作站点数、占比</div>
+                            <div class="coverage-ratio"><span class="remote-operation-ratio">0</span>%</div>
+                            <div class="coverage-bar"><span class="coverage-fill remote-operation-fill" style="width: 0%"></span></div>
+                            <div class="coverage-sites"><span class="remote-operation-sites">0</span>/<span class="remote-operation-total">0</span> 站</div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 业务应用监督评价看板：巡视/操作/安全 各状态 -->
+                <section class="dashboard-section">
+                    <h2 class="section-heading">业务应用监督评价</h2>
+                    <div class="biz-task-cards">
+                        <div class="task-state-card patrol">
+                            <div class="task-state-header">
+                                <span class="task-state-title">巡视</span>
+                                <span class="task-state-alert patrol-alert" id="patrol-review-alert" style="display: none;">待审核 <span class="patrol-review-count">0</span></span>
+                            </div>
+                            <div class="task-state-row">
+                                <span class="t pending">待执行 <span class="patrol-pending-count">0</span></span>
+                                <span class="t doing">执行中 <span class="patrol-in-progress-count">0</span></span>
+                                <span class="t review">待审核 <span class="patrol-review-count">0</span></span>
+                                <span class="t done">已完成 <span class="patrol-completed-count">0</span></span>
+                            </div>
+                        </div>
+                        <div class="task-state-card operation">
+                            <div class="task-state-header">
+                                <span class="task-state-title">操作</span>
+                            </div>
+                            <div class="task-state-row">
+                                <span class="t pending">待操作 <span class="operation-pending-count">0</span></span>
+                                <span class="t doing">操作中 <span class="operation-in-progress-count">0</span></span>
+                                <span class="t done">已完成 <span class="operation-completed-count">0</span></span>
+                            </div>
+                        </div>
+                        <div class="task-state-card safety">
+                            <div class="task-state-header">
+                                <span class="task-state-title">安全</span>
+                            </div>
+                            <div class="task-state-row">
+                                <span class="t pending">待执行 <span class="safety-pending-count">0</span></span>
+                                <span class="t doing">执行中 <span class="safety-in-progress-count">0</span></span>
+                                <span class="t done">已完成 <span class="safety-completed-count">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- 质量看板页面 -->
+        <div id="quality-dashboard" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>质量看板</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            <main class="content quality-content">
+                <!-- 1. 终端统计看板（在线率、离线率、数量 同一行） -->
+                <section class="quality-section">
+                    <div class="dashboard-section-head">
+                        <h2 class="section-heading">终端统计看板</h2>
+                        <div class="key-work-time-filter">
+                            <button type="button" class="time-filter-btn active" data-range="week">本周</button>
+                            <button type="button" class="time-filter-btn" data-range="month">本月</button>
+                        </div>
+                    </div>
+                    <div class="terminal-stats-panel">
+                        <div class="terminal-stat-card">
+                            <span class="terminal-stat-label">终端在线率</span>
+                            <span class="terminal-stat-value" id="terminal-online-rate">96.5%</span>
+                        </div>
+                        <div class="terminal-stat-card">
+                            <span class="terminal-stat-label">终端离线率</span>
+                            <span class="terminal-stat-value" id="terminal-offline-rate">3.5%</span>
+                        </div>
+                        <div class="terminal-stat-card">
+                            <span class="terminal-stat-label">终端数量</span>
+                            <span class="terminal-stat-value" id="terminal-total-count">74 台</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. 缺陷/在线率/使用率排名（前10与后10 + 切换） -->
+                <section class="quality-section">
+                    <div class="ranking-block" data-rank-type="defect">
+                        <div class="ranking-block-header">
+                            <h3 class="quality-subheading">缺陷排名</h3>
+                            <div class="rank-toggle">
+                                <button type="button" class="rank-toggle-btn active" data-dir="top">前10名</button>
+                                <button type="button" class="rank-toggle-btn" data-dir="bottom">后10名</button>
+                            </div>
+                        </div>
+                        <div class="site-ranking-list" id="ranking-defect-list"></div>
+                    </div>
+
+                    <div class="ranking-block" data-rank-type="online">
+                        <div class="ranking-block-header">
+                            <h3 class="quality-subheading">在线率排名</h3>
+                            <div class="rank-toggle">
+                                <button type="button" class="rank-toggle-btn active" data-dir="top">前10名</button>
+                                <button type="button" class="rank-toggle-btn" data-dir="bottom">后10名</button>
+                            </div>
+                        </div>
+                        <div class="site-ranking-list" id="ranking-online-list"></div>
+                    </div>
+
+                    <div class="ranking-block" data-rank-type="usage">
+                        <div class="ranking-block-header">
+                            <h3 class="quality-subheading">使用率排名</h3>
+                            <div class="rank-toggle">
+                                <button type="button" class="rank-toggle-btn active" data-dir="top">前10名</button>
+                                <button type="button" class="rank-toggle-btn" data-dir="bottom">后10名</button>
+                            </div>
+                        </div>
+                        <div class="site-ranking-list" id="ranking-usage-list"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 底部弹窗容器 -->
+    <div class="bottom-modal" id="permitter-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择许可人</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">许可人</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="李明">李明</div>
+                        <div class="modal-option-item" data-value="王建国">王建国</div>
+                        <div class="modal-option-item" data-value="张师傅">张师傅</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-modal" id="change-reason-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择变更原因</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">变更原因</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="不作变更">不作变更</div>
+                        <div class="modal-option-item" data-value="作业时间调整">作业时间调整</div>
+                        <div class="modal-option-item" data-value="作业范围变更">作业范围变更</div>
+                        <div class="modal-option-item" data-value="安全措施补充">安全措施补充</div>
+                        <div class="modal-option-item" data-value="其他">其他</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="progress-status-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择当前状态</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">状态</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="准备中">准备中</div>
+                        <div class="modal-option-item" data-value="进行中">进行中</div>
+                        <div class="modal-option-item" data-value="已完成">已完成</div>
+                        <div class="modal-option-item" data-value="暂停">暂停</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="exception-type-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择异常类型</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">异常类型</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="设备异常">设备异常</div>
+                        <div class="modal-option-item" data-value="人员异常">人员异常</div>
+                        <div class="modal-option-item" data-value="环境异常">环境异常</div>
+                        <div class="modal-option-item" data-value="其他异常">其他异常</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="completion-time-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择终结时间</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn">&lt;</button>
+                            <h4 class="calendar-title">2026年2月</h4>
+                            <button class="calendar-nav-btn">&gt;</button>
+                        </div>
+                        <div class="calendar-weekdays"></div>
+                    </div>
+                    <div class="calendar-days"></div>
+                    <div class="time-selector">
+                        <div class="time-section">
+                            <label>开始时间</label>
+                            <div class="time-picker">
+                                <select class="hour-select start-hour"></select>
+                                <span>:</span>
+                                <select class="minute-select start-minute"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="duration-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择授权时长</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">时长</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="1天">1天</div>
+                        <div class="modal-option-item" data-value="3天">3天</div>
+                        <div class="modal-option-item" data-value="7天">7天</div>
+                        <div class="modal-option-item" data-value="自定义">自定义</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="vehicle-type-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择车辆类型</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">类型</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="轿车">轿车</div>
+                        <div class="modal-option-item" data-value="货车">货车</div>
+                        <div class="modal-option-item" data-value="工程车">工程车</div>
+                        <div class="modal-option-item" data-value="其他">其他</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-modal" id="access-area-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择授权区域</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="modal-option-group">
+                    <div class="modal-option-title">区域</div>
+                    <div class="modal-option-list">
+                        <div class="modal-option-item" data-value="主控室">主控室</div>
+                        <div class="modal-option-item" data-value="设备区">设备区</div>
+                        <div class="modal-option-item" data-value="库房">库房</div>
+                        <div class="modal-option-item" data-value="其他">其他</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 许可时间日历选择器 -->
+    <div class="bottom-modal" id="permission-time-modal">
+        <div class="bottom-modal-content">
+            <div class="bottom-modal-header">
+                <h3 class="bottom-modal-title">选择许可时间</h3>
+                <button class="bottom-modal-close">&times;</button>
+            </div>
+            <div class="bottom-modal-body">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button class="calendar-nav-btn">&lt;</button>
+                            <h4 class="calendar-title">2026年2月</h4>
+                            <button class="calendar-nav-btn">&gt;</button>
+                        </div>
+                        <div class="calendar-weekdays"></div>
+                    </div>
+                    <div class="calendar-days"></div>
+                    <div class="time-selector">
+                        <div class="time-section">
+                            <label>开始时间</label>
+                            <div class="time-picker">
+                                <select class="hour-select start-hour"></select>
+                                <span>:</span>
+                                <select class="minute-select start-minute"></select>
+                            </div>
+                        </div>
+                        <div class="time-section">
+                            <label>结束时间</label>
+                            <div class="time-picker">
+                                <select class="hour-select end-hour"></select>
+                                <span>:</span>
+                                <select class="minute-select end-minute"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-modal-footer">
+                <button class="bottom-modal-btn secondary">取消</button>
+                <button class="bottom-modal-btn primary">确定</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部导航栏（放在 app-container 外保证各页都能显示） -->
+    <nav class="bottom-nav">
+        <button class="nav-item" data-page="matters">
+            <div class="nav-icon-container">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="nav-badge">12</span>
+            </div>
+            <span>告警</span>
+        </button>
+        <button class="nav-item active" data-page="workbench">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>工作台</span>
+        </button>
+        <button class="nav-item" data-page="xiaozhi">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>小智</span>
+        </button>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/core-route.js"></script>
+    <script src="js/time-picker-options.js"></script>
+    <script src="js/data/page-data.js"></script>
+    <script src="js/render-lists.js"></script>
+    <script src="js/core-xiaozhi.js"></script>
+    <script src="js/core-panels.js"></script>
+    <script src="js/core-workbench.js"></script>
+    <script src="js/pages/smart-trip-data.js"></script>
+    <script src="js/pages/smart-trip-page.js"></script>
+    <script src="js/pages/alerts.js"></script>
+    <script src="js/pages/xiaozhi.js"></script>
+    <script src="js/pages/smart-safety.js"></script>
+    <script src="js/pages/smart-safety-search.js"></script>
+    <script src="js/pages/human-machine.js"></script>
+    <script src="js/pages/patrol-progress.js"></script>
+    <script src="js/modals-defect.js"></script>
+    <script src="js/modals-defect-2.js"></script>
+    <script src="js/pages/dashboards.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* 角色切换按钮 */
+.role-switch-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0%;
+    margin-right: 10px;
+}
+
+.role-switch-btn img {
+    vertical-align: middle;
+}
+
+/* 告警页面样式 */
+.alert-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.alert-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.alert-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert-card-header {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 0;
+}
+
+.alert-card-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.alert-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.alert-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 8px;
+    min-width: 10px;
+    text-align: center;
+    line-height: 1;
+}
+
+.alert-card-icon.patrol {
+    background-color: #4a90e2;
+}
+
+.alert-card-icon.operation {
+    background-color: #f57c00;
+}
+
+.alert-card-icon.safety {
+    background-color: #27ae60;
+}
+
+.alert-card-icon.device {
+    background-color: #e74c3c;
+}
+
+.alert-card-icon.trip {
+    background-color: #9b59b6;
+}
+
+.alert-card-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-card-title h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 12px;
+}
+
+.alert-count {
+    background-color: #ff4757;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.alert-card-body {
+    margin-left: 0;
+    width: 100%;
+}
+
+.alert-card-content {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.alert-card-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.alert-card-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.alert-content {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}

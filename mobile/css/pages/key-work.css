@@ -1,0 +1,267 @@
+/* 重点工作页面样式（显隐由 base.css .page.active 控制） */
+#key-work.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.key-work-content {
+    padding: 12px 14px;
+    padding-bottom: 76px;
+}
+
+/* 页面右上：统计范围（左）+ 时间维度（右），不在顶栏内 */
+.key-work-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.key-work-scope {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    padding: 6px 10px;
+    background: #e8f4fd;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #1565c0;
+}
+.key-work-scope .scope-label { color: #666; }
+.key-work-scope .scope-value { font-weight: 700; }
+.key-work-scope .scope-unit { color: #666; }
+
+/* 时间维度切换：在内容区右上，今日/本周/本月 */
+.key-work-time-filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.key-work-time-filter .time-filter-btn {
+    padding: 6px 12px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.key-work-time-filter .time-filter-btn:hover {
+    background: #f0f2f5;
+    border-color: #4a90e2;
+    color: #4a90e2;
+}
+.key-work-time-filter .time-filter-btn.active {
+    background: #4a90e2;
+    color: #fff;
+    border-color: #4a90e2;
+}
+
+.stats-cards.key-work-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border-left: 3px solid #4a90e2;
+}
+
+.stat-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.stat-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.stat-icon.patrol { background: linear-gradient(135deg, #4CAF50, #388e3c); }
+.stat-icon.operation { background: linear-gradient(135deg, #FF9800, #f57c00); }
+.stat-icon.safety { background: linear-gradient(135deg, #9C27B0, #7b1fa2); }
+
+.stat-card.patrol { border-left-color: #4CAF50; }
+.stat-card.operation { border-left-color: #FF9800; }
+.stat-card.safety { border-left-color: #9C27B0; }
+
+.stat-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+}
+
+/* 卡片内维度标注：站点数（与任务数区分） */
+.stat-dimension.stat-sites {
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+}
+.stat-dimension.stat-sites span { font-weight: 600; color: #333; }
+
+/* 任务完成率：明确标注，避免与“站点完成率”混淆 */
+.stat-task-rate {
+    margin-bottom: 6px;
+}
+.stat-rate-label {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    flex-shrink: 0;
+    min-width: 2.2em;
+}
+
+.stat-card.patrol .stat-value { color: #2e7d32; }
+.stat-card.operation .stat-value { color: #e65100; }
+.stat-card.safety .stat-value { color: #6a1b9a; }
+
+.stat-progress {
+    flex: 1;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.stat-progress-fill {
+    display: block;
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.stat-progress-fill.patrol { background: linear-gradient(90deg, #81c784, #4CAF50); }
+.stat-progress-fill.operation { background: linear-gradient(90deg, #ffb74d, #FF9800); }
+.stat-progress-fill.safety { background: linear-gradient(90deg, #ba68c8, #9C27B0); }
+
+/* 任务数：强制同一行、左对齐，数字加颜色 */
+.stat-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    font-size: 11px;
+    color: #666;
+}
+
+#key-work .stat-details-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px 16px;
+    font-size: 12px;
+    text-align: left;
+}
+
+#key-work .stat-details-row .stat-detail-item {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+}
+#key-work .stat-details-row .stat-detail-item span {
+    font-weight: 700;
+    font-size: 14px;
+    margin-left: 2px;
+}
+#key-work .stat-details-row .stat-detail-item.completed span { color: #2e7d32; }
+#key-work .stat-details-row .stat-detail-item.pending span { color: #1565c0; }
+#key-work .stat-details-row .stat-detail-item.overdue span { color: #c62828; }
+
+.recent-jobs {
+    margin-bottom: 16px;
+}
+
+.key-work-content .section-heading {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.job-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    gap: 8px;
+}
+
+.job-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 2px 0;
+}
+
+.job-meta {
+    font-size: 11px;
+    color: #888;
+    margin: 0;
+}
+
+.job-status {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.job-status.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.job-status.in-progress {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.job-status.pending {
+    background: #e3f2fd;
+    color: #1565c0;
+}

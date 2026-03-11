@@ -1,0 +1,347 @@
+        <!-- 跳闸事件筛选弹窗 -->
+        <div class="bottom-modal" id="trip-event-filter-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">筛选条件</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">跳闸时间</div>
+                        <div class="form-group">
+                            <input type="date" id="trip-filter-date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-option-group">
+                        <div class="modal-option-title">跳闸状态</div>
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="全部">全部</div>
+                            <div class="modal-option-item" data-value="未确认">未确认</div>
+                            <div class="modal-option-item" data-value="待处理">待处理</div>
+                            <div class="modal-option-item" data-value="已处理">已处理</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary" id="trip-filter-reset">重置</button>
+                    <button class="bottom-modal-btn primary" id="trip-filter-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 处理结果选择弹窗 -->
+        <div class="bottom-modal" id="handling-result-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <h3 class="bottom-modal-title">处理结果</h3>
+                    <button class="bottom-modal-close">&times;</button>
+                </div>
+                <div class="bottom-modal-body">
+                    <div class="modal-option-group">
+                        <div class="modal-option-list">
+                            <div class="modal-option-item" data-value="成功">成功</div>
+                            <div class="modal-option-item" data-value="部分成功">部分成功</div>
+                            <div class="modal-option-item" data-value="失败">失败</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn primary" id="handling-result-confirm">确认</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 缺陷点位核实弹窗 -->
+        <div class="bottom-modal" id="defect-verification-modal">
+            <div class="bottom-modal-content">
+                <div class="bottom-modal-header">
+                    <div class="progress-container">
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-name">缺陷信息</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-name">现场核实</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-name">测量记录</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="4">
+                            <span class="step-number">4</span>
+                            <span class="step-name">结果判定</span>
+                        </div>
+                        <div class="progress-line"></div>
+                        <div class="progress-step" data-step="5">
+                            <span class="step-number">5</span>
+                            <span class="step-name">提交确认</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-body">
+                    <!-- 步骤1：缺陷信息查看 -->
+                    <div class="verification-step active" data-step="1">
+                        <div class="defect-info">
+                            <div class="form-group">
+                                <label>设备名称</label>
+                                <div class="defect-device"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷位置</label>
+                                <div class="defect-location"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷描述</label>
+                                <div class="defect-description"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>机巡结果</label>
+                                <div class="defect-image-container">
+                                    <img class="defect-image" src="" alt="缺陷图片">
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请仔细查看缺陷信息，了解机巡发现的问题，为现场核实做好准备。</p>
+                                <p><strong>操作要求：</strong></p>
+                                <ul>
+                                    <li>确认设备名称和位置信息是否正确</li>
+                                    <li>仔细阅读缺陷描述，了解问题的具体表现</li>
+                                    <li>查看机巡拍摄的照片，了解缺陷的外观特征</li>
+                                    <li>准备好必要的工具和设备，如测量仪器、相机等</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤2：现场核实 -->
+                    <div class="verification-step" data-step="2">
+                        <div class="field-verification">
+                            <div class="form-group">
+                                <label>现场照片</label>
+                                <div class="photo-upload">
+                                    <button class="btn btn-secondary">
+                                        <img src="image/safety/安措拍照.png" alt="拍照" width="20" height="20">
+                                        拍摄现场照片
+                                    </button>
+                                    <div class="uploaded-photos">
+                                        <!-- 上传的照片将显示在这里 -->
+                                    </div>
+                                </div>
+                                <div class="photo-guidelines">
+                                    <p><strong>拍照要求：</strong></p>
+                                    <ul>
+                                        <li>拍摄缺陷的整体外观（全景）</li>
+                                        <li>拍摄缺陷的细节特征（特写）</li>
+                                        <li>拍摄缺陷周围的环境和相关设备</li>
+                                        <li>确保照片清晰，光线充足</li>
+                                        <li>建议拍摄2-3张不同角度的照片</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>现场环境</label>
+                                <div class="environment-info">
+                                    <div class="form-control">
+                                        <input type="text" class="environment-temperature" placeholder="环境温度（°C）">
+                                    </div>
+                                    <div class="form-control">
+                                        <input type="text" class="environment-humidity" placeholder="环境湿度（%）">
+                                    </div>
+                                    <div class="form-control">
+                                        <input type="text" class="environment-light" placeholder="光照条件">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请到达现场进行核实，拍摄实际情况照片，记录现场环境信息。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3：测量记录 -->
+                    <div class="verification-step" data-step="3">
+                        <div class="measurement-record">
+                            <div class="form-group">
+                                <label>缺陷数值</label>
+                                <div class="value-inputs">
+                                    <div class="form-control">
+                                        <input type="number" class="defect-value" placeholder="请输入缺陷相关数值（如压力、温度等）">
+                                        <span class="value-unit">单位：</span>
+                                        <select class="value-unit-select">
+                                            <option value="">请选择单位</option>
+                                            <option value="MPa">MPa（压力）</option>
+                                            <option value="°C">°C（温度）</option>
+                                            <option value="mm">mm（尺寸）</option>
+                                            <option value="Ω">Ω（电阻）</option>
+                                            <option value="V">V（电压）</option>
+                                            <option value="A">A（电流）</option>
+                                            <option value="dB">dB（噪音）</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="measurement-guidelines">
+                                    <p><strong>测量要求：</strong></p>
+                                    <ul>
+                                        <li>使用合适的测量仪器，确保精度</li>
+                                        <li>按照操作规程进行测量</li>
+                                        <li>记录测量的具体位置和条件</li>
+                                        <li>如有必要，进行多次测量取平均值</li>
+                                        <li>对于不同类型的缺陷，测量对应的关键参数</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>验证方法</label>
+                                <div class="verification-method">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="目视检查">目视检查</div>
+                                        <div class="modal-option-item" data-value="仪器测量">仪器测量</div>
+                                        <div class="modal-option-item" data-value="功能测试">功能测试</div>
+                                        <div class="modal-option-item" data-value="其他方法">其他方法</div>
+                                    </div>
+                                </div>
+                                <div class="verification-guidelines">
+                                    <p><strong>验证方法说明：</strong></p>
+                                    <ul>
+                                        <li><strong>目视检查：</strong>通过肉眼观察缺陷的外观特征</li>
+                                        <li><strong>仪器测量：</strong>使用专业仪器测量相关参数</li>
+                                        <li><strong>功能测试：</strong>测试设备的运行状态和功能</li>
+                                        <li><strong>其他方法：</strong>根据实际情况选择合适的验证方法</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>请测量缺陷相关数值，选择使用的验证方法，并详细记录测量结果。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤4：结果判定 -->
+                    <div class="verification-step" data-step="4">
+                        <div class="result-judgment">
+                            <div class="form-group">
+                                <label>核实结果</label>
+                                <div class="verification-result">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="属实">属实</div>
+                                        <div class="modal-option-item" data-value="不属实">不属实</div>
+                                        <div class="modal-option-item" data-value="部分属实">部分属实</div>
+                                    </div>
+                                </div>
+                                <div class="result-guidelines">
+                                    <p><strong>结果判定标准：</strong></p>
+                                    <ul>
+                                        <li><strong>属实：</strong>现场核实情况与机巡描述一致，存在明显缺陷</li>
+                                        <li><strong>不属实：</strong>现场核实情况与机巡描述不一致，无明显缺陷</li>
+                                        <li><strong>部分属实：</strong>现场存在类似问题，但程度或表现与机巡描述有差异</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>缺陷等级</label>
+                                <div class="defect-level">
+                                    <div class="modal-option-list">
+                                        <div class="modal-option-item" data-value="紧急">紧急</div>
+                                        <div class="modal-option-item" data-value="重要">重要</div>
+                                        <div class="modal-option-item" data-value="一般">一般</div>
+                                    </div>
+                                </div>
+                                <div class="level-guidelines">
+                                    <p><strong>缺陷等级标准：</strong></p>
+                                    <ul>
+                                        <li><strong>紧急：</strong>缺陷严重影响设备运行安全，可能导致设备故障或事故</li>
+                                        <li><strong>重要：</strong>缺陷对设备运行有一定影响，需要及时处理</li>
+                                        <li><strong>一般：</strong>缺陷对设备运行影响较小，可在计划检修时处理</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>核实备注</label>
+                                <textarea class="form-control verification-notes" rows="4" placeholder="请详细描述核实过程和发现的问题"></textarea>
+                                <div class="notes-guidelines">
+                                    <p><strong>备注要求：</strong></p>
+                                    <ul>
+                                        <li>详细描述现场核实的具体过程</li>
+                                        <li>记录测量的具体数值和结果</li>
+                                        <li>描述缺陷的具体表现和特征</li>
+                                        <li>说明使用的验证方法和工具</li>
+                                        <li>记录现场环境条件</li>
+                                        <li>如有必要，提出处理建议</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="step-instruction">
+                                <p><strong>步骤说明：</strong>根据现场核实情况，判断缺陷是否属实，评估缺陷等级，并详细记录核实过程。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤5：提交确认 -->
+                    <div class="verification-step" data-step="5">
+                        <div class="submit-confirmation">
+                            <div class="confirmation-content">
+                                <h4>核实信息确认</h4>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">设备名称：</span>
+                                    <span class="confirmation-value device-name"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷位置：</span>
+                                    <span class="confirmation-value location"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷描述：</span>
+                                    <span class="confirmation-value description"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">核实结果：</span>
+                                    <span class="confirmation-value result"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷等级：</span>
+                                    <span class="confirmation-value level"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">现场照片：</span>
+                                    <span class="confirmation-value photo-count">0张</span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">缺陷数值：</span>
+                                    <span class="confirmation-value value"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">验证方法：</span>
+                                    <span class="confirmation-value method"></span>
+                                </div>
+                                <div class="confirmation-item">
+                                    <span class="confirmation-label">核实备注：</span>
+                                    <span class="confirmation-value notes"></span>
+                                </div>
+                                <div class="step-instruction">
+                                    <p><strong>步骤说明：</strong>请确认所有核实信息准确无误，提交后将完成本次缺陷核实任务。</p>
+                                    <p><strong>提交前检查：</strong></p>
+                                    <ul>
+                                        <li>确认所有必填信息已填写完整</li>
+                                        <li>确认现场照片已上传且清晰可见</li>
+                                        <li>确认测量数值准确无误</li>
+                                        <li>确认核实结果和缺陷等级判定合理</li>
+                                        <li>确认备注信息详细完整</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-modal-footer">
+                    <button class="bottom-modal-btn secondary">取消</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="next">下一步</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="back" style="display: none;">上一步</button>
+                    <button class="bottom-modal-btn primary step-btn" data-action="submit" style="display: none;">提交核实结果</button>
+                </div>
+            </div>
+        </div>

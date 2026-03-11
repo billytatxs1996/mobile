@@ -1,0 +1,217 @@
+/* 质量看板样式（按思维导图：月度缺陷数率 + 终端指标） */
+.quality-content {
+    padding: 16px;
+    padding-bottom: 76px;
+}
+
+/* 时间维度：与业务看板一致，右对齐 */
+#quality-dashboard .key-work-top-row.quality-dashboard-top-row {
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+#quality-dashboard .section-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+#quality-dashboard .section-desc {
+    font-size: 12px;
+    color: #666;
+    margin: 0 0 12px 0;
+}
+
+.quality-section {
+    margin-bottom: 20px;
+}
+
+.dashboard-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.dashboard-section-head .section-heading {
+    margin: 0;
+}
+
+.quality-subheading {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+/* 终端统计看板：三卡同一行 */
+.terminal-stats-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e8ecf0;
+    padding: 12px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.terminal-stat-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid #1565c0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.terminal-stat-card:nth-child(2) { border-left-color: #666; }
+.terminal-stat-card:nth-child(3) { border-left-color: #ff9800; }
+.terminal-stat-label {
+    font-size: 11px;
+    color: #666;
+}
+.terminal-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* 排名统计：前10/后10 切换 */
+.ranking-block {
+    margin-bottom: 18px;
+}
+.ranking-block:last-child {
+    margin-bottom: 0;
+}
+.ranking-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.rank-toggle {
+    display: flex;
+    gap: 4px;
+    background: #f0f2f5;
+    border-radius: 8px;
+    padding: 3px;
+}
+.rank-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #666;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.rank-toggle-btn.active {
+    background: #fff;
+    color: #1565c0;
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.site-metric-list {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e8ecf0;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.site-metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f2f5;
+    font-size: 14px;
+}
+
+.site-metric-row:last-child {
+    border-bottom: none;
+}
+
+.site-metric-row .site-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.site-metric-row .site-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.site-metric-row .site-value.rate-good { color: #2e7d32; }
+.site-metric-row .site-value.rate-mid { color: #ed6c02; }
+.site-metric-row .site-value.rate-low { color: #c62828; }
+.site-metric-row .site-value.has-defect { color: #c62828; font-weight: 600; }
+
+/* 站点终端维护与使用排名 */
+.site-ranking-block {
+    margin-top: 4px;
+}
+
+.site-ranking-list {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e8ecf0;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.site-ranking-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f2f5;
+    font-size: 13px;
+}
+
+.site-ranking-row:last-child {
+    border-bottom: none;
+}
+
+.site-ranking-row .rank {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background: #e8f4fd;
+    color: #1565c0;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.site-ranking-row .site-name {
+    flex: 1;
+    min-width: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.site-ranking-row .rank-stat {
+    flex-shrink: 0;
+    color: #666;
+    font-size: 12px;
+}
+
+.site-ranking-row .rank-stat.rate-good { color: #2e7d32; }
+.site-ranking-row .rank-stat.rate-mid { color: #ed6c02; }
+.site-ranking-row .rank-stat.rate-low { color: #c62828; }
+.site-ranking-row .rank-stat.has-defect { color: #c62828; font-weight: 600; }
+
+/* 响应式 */
+@media (max-width: 360px) {
+    .terminal-stats-panel {
+        grid-template-columns: 1fr;
+    }
+}

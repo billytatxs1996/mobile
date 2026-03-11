@@ -1,0 +1,355 @@
+/* 工作票内容样式 */
+.work-order-container,
+.safety-measure-container {
+    padding: 16px;
+}
+
+.work-order-header {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.work-order-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.job-name-header {
+    margin-bottom: 16px;
+}
+
+.job-name-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.work-order-section,
+.safety-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.work-order-section h3,
+.safety-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-label {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.work-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.work-content p {
+    margin: 0 0 8px 0;
+}
+
+.work-content p:last-child {
+    margin-bottom: 0;
+}
+
+.safety-measures ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.safety-measures li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.work-order-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #357abd;
+}
+
+.btn-secondary {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+/* 安措执行页面样式 */
+.measure-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.measure-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.measure-info {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.measure-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.measure-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.measure-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.photo-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.photo-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.confirm-btn {
+    padding: 8px 12px;
+    background-color: #357BBD;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+    background-color: #357BBD;
+}
+
+.permission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* 进度更新样式 */
+.progress-update {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.progress-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a90e2;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* 异常上报样式 */
+.exception-report {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.photo-upload {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 临时授权申请样式 */
+.authorization-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.auth-tab-btn {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.auth-tab-btn.active {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.auth-content {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-content.active {
+    display: flex;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .measure-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .measure-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+    
+    .work-order-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .authorization-tabs {
+        justify-content: center;
+    }
+    
+    .auth-tab-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

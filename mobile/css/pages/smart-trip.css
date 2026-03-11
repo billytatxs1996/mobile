@@ -1,0 +1,137 @@
+/* 故障处理：已处理显示只读区块，未确认/待处理显示表单 */
+#smart-trip .fault-handling-content #fault-handling-readonly { display: none; }
+#smart-trip .fault-handling-content #fault-handling-form-container { display: block; }
+#smart-trip .fault-handling-content[data-handling-view="readonly"] #fault-handling-readonly { display: block !important; }
+#smart-trip .fault-handling-content[data-handling-view="readonly"] #fault-handling-form-container { display: none !important; }
+
+/* 跳闸波形图样式 */
+.trip-waveform {
+    margin-top: 12px;
+}
+
+/* 作业项选择页面样式 */
+#job-selection-page,
+#trip-event-selection-page {
+    background-color: #f5f5f5;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#job-selection-page.active,
+#trip-event-selection-page.active {
+    right: 0;
+}
+
+#job-selection-page .content,
+#trip-event-selection-page .content {
+    padding-bottom: 80px;
+}
+
+/* 底部导航栏样式 */
+.bottom-nav {
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.waveform-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* 图片标记部分 */
+.image-marking {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.photo-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.marking-tools {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* 反馈记录表单样式 */
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 故障拍照部分样式增强 */
+.measure-item {
+    transition: all 0.2s ease;
+}
+
+.measure-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 智能跳闸页面特定样式 */
+#smart-trip .work-order-container {
+    padding: 16px;
+}
+
+#smart-trip .work-order-section {
+    margin-bottom: 16px;
+}
+
+#smart-trip .info-grid {
+    gap: 16px;
+}
+
+#smart-trip .info-item {
+    gap: 8px;
+}
+
+/* 作业项选择页面样式 */
+.job-selection-container {
+    padding: 16px;
+}
+
+/* 搜索容器 */
+.search-container {
+    margin-bottom: 16px;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper .form-control {
+    flex: 1;
+    padding-right: 48px;
+}
+
+.filter-btn {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.filter-btn img {
+    width: 24px;
+    height: 24px;
+}

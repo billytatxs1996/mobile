@@ -1,0 +1,97 @@
+        <!-- 人机协同详情页面 -->
+        <div id="human-machine-detail" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>任务详情</h1>
+                </div>
+                <div class="header-right">
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <main class="content human-machine-detail-content">
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h2 class="detail-title" id="detail-device">设备名称</h2>
+                        <span class="detail-time" id="detail-time">时间</span>
+                    </div>
+                    
+                    <div class="detail-info">
+                        <div class="info-item">
+                            <span class="info-label">点位位置：</span>
+                            <span class="info-value" id="detail-location">位置信息</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">可能缺陷：</span>
+                            <span class="info-value" id="detail-description">缺陷描述</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">分析结果：</span>
+                            <span class="info-value" id="detail-analysis">分析结果</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">严重程度：</span>
+                            <span class="info-value" id="detail-severity">严重程度</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-image-section">
+                        <h3 class="section-subtitle">缺陷图片</h3>
+                        <div class="image-container" id="detail-image-container">
+                            <!-- 图片将在这里动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-verification-section" id="detail-verification-section">
+                        <h3 class="section-subtitle">现场核实</h3>
+                        <div class="verification-form" id="verification-form">
+                            <!-- 现场确认照片上传 -->
+                            <div class="form-group">
+                                <label class="form-label">现场确认照片</label>
+                                <div class="file-upload-container" id="photo-upload-container">
+                                    <input type="file" id="verification-photo" class="file-upload-input" accept="image/*" multiple>
+                                    <label for="verification-photo" class="file-upload-label">
+                                        <img src="image/common/拍照.png" alt="上传照片" width="24" height="24">
+                                        <span>点击上传现场确认照片</span>
+                                    </label>
+                                    <div class="uploaded-photos" id="uploaded-photos">
+                                        <!-- 上传的照片将在这里动态生成 -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 现场分析 -->
+                            <div class="form-group">
+                                <label class="form-label">现场分析</label>
+                                <textarea id="field-analysis" class="form-textarea" placeholder="请详细描述现场缺陷情况、分析结果及处理建议..."></textarea>
+                            </div>
+                            
+                            <!-- 核实备注 -->
+                            <div class="form-group">
+                                <label class="form-label">核实备注</label>
+                                <textarea id="verification-notes" class="form-textarea" placeholder="请填写核实备注..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-result-section" id="detail-result-section">
+                        <h3 class="section-subtitle">核实结果</h3>
+                        <div class="result-info" id="detail-result-info">
+                            <!-- 核实结果将在这里动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-actions" id="detail-actions">
+                        <!-- 操作按钮将在这里动态生成 -->
+                    </div>
+                </div>
+            </main>
+        </div>

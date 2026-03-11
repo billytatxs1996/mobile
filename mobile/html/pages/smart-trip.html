@@ -1,0 +1,319 @@
+        
+        <!-- 智能跳闸页面 -->
+        <div id="smart-trip" class="page">
+            <header class="header smart-safety-header">
+                <div class="header-left">
+                    <button class="back-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19l-7-7 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>智能跳闸</h1>
+                </div>
+                <div class="header-right">
+                    <button class="switch-project-btn">
+                        <img src="image/common/切换项目.png" alt="切换项目" width="24" height="24">
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 页签导航 -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="trip-report">跳闸快报</button>
+                <button class="tab-btn" data-tab="fault-confirmation">故障确认</button>
+                <button class="tab-btn" data-tab="fault-handling">故障处理</button>
+            </div>
+            
+            <!-- 内容区域 -->
+            <main class="content smart-safety-content">
+                <!-- 跳闸快报页面 -->
+                <div class="tab-content active" data-tab="trip-report">
+                    <div class="trip-report-content">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>基本信息</h3>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸时间：</span>
+                                        <span class="info-value trip-event-time"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸设备：</span>
+                                        <span class="info-value trip-equipment"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">跳闸类型：</span>
+                                        <span class="info-value trip-type"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">故障电流：</span>
+                                        <span class="info-value trip-current"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">状态：</span>
+                                        <span class="info-value trip-status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>跳闸详情</h3>
+                                <div class="work-content">
+                                    <p class="trip-description"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="work-order-section">
+                                <h3>跳闸波形图</h3>
+                                <div class="trip-waveform">
+                                    <img src="" alt="跳闸波形图" class="waveform-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故障确认页面 -->
+                <div class="tab-content" data-tab="fault-confirmation">
+                    <div class="fault-confirmation-content">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- 故障拍照部分 -->
+                            <div class="work-order-section">
+                                <h3>故障拍照</h3>
+                                <div class="measure-list">
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>故障点照片</h4>
+                                            <p>拍摄故障点的清晰照片，确保能看清故障情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>设备状态照片</h4>
+                                            <p>拍摄设备的整体状态照片，记录设备当前情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                    <div class="measure-item">
+                                        <div class="measure-info">
+                                            <h4>现场环境照片</h4>
+                                            <p>拍摄现场环境照片，记录周围环境情况</p>
+                                        </div>
+                                        <div class="measure-actions">
+                                            <button class="photo-btn">
+                                                <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                拍照
+                                            </button>
+                                            <button class="confirm-btn">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 反馈记录部分 -->
+                            <div class="work-order-section">
+                                <h3>反馈记录</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="fault-type">故障类型</label>
+                                        <div id="fault-type" class="form-control select-box" data-modal="fault-type-modal">请选择故障类型</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fault-description">故障描述</label>
+                                        <textarea id="fault-description" class="form-control" rows="4" placeholder="请详细描述故障情况"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fault-level">故障等级</label>
+                                        <div id="fault-level" class="form-control select-box" data-modal="fault-level-modal">请选择故障等级</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="processing-suggestion">处理建议</label>
+                                        <textarea id="processing-suggestion" class="form-control" rows="3" placeholder="请输入处理建议"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 图片标记部分 -->
+                            <div class="work-order-section">
+                                <h3>图片标记</h3>
+                                <div class="image-marking">
+                                    <div class="form-group">
+                                        <label>选择照片</label>
+                                        <div class="photo-selector">
+                                            <button class="btn btn-secondary">选择照片</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>标记工具</label>
+                                        <div class="marking-tools">
+                                            <button class="btn btn-secondary">矩形</button>
+                                            <button class="btn btn-secondary">圆形</button>
+                                            <button class="btn btn-secondary">箭头</button>
+                                            <button class="btn btn-secondary">文字</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>标记说明</label>
+                                        <textarea class="form-control" rows="3" placeholder="请输入标记说明"></textarea>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn btn-primary">保存标记</button>
+                                        <button class="btn btn-secondary">保存草稿</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 故障处理页面 -->
+                <div class="tab-content" data-tab="fault-handling">
+                    <div class="fault-handling-content">
+                        <div class="work-order-container">
+                            <div class="work-order-section">
+                                <div class="info-item">
+                                    <span class="info-label">跳闸事件：</span>
+                                    <span class="info-value trip-event-name"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理方案部分 -->
+                            <div class="work-order-section">
+                                <h3>处理方案</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="handling-scheme">处理方案</label>
+                                        <textarea id="handling-scheme" class="form-control" rows="4" placeholder="请详细描述故障处理方案"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-person">处理人员</label>
+                                        <input type="text" id="handling-person" class="form-control" placeholder="请输入处理人员姓名">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-time">处理时间</label>
+                                        <input type="datetime-local" id="handling-time" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="required-equipment">所需设备/材料</label>
+                                        <textarea id="required-equipment" class="form-control" rows="2" placeholder="请输入所需设备或材料"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理过程记录部分 -->
+                            <div class="work-order-section">
+                                <h3>处理过程记录</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="process-record">处理过程</label>
+                                        <textarea id="process-record" class="form-control" rows="5" placeholder="请详细记录故障处理过程"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="process-photos">处理过程照片</label>
+                                        <div class="measure-list">
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理前照片</h4>
+                                                    <p>拍摄处理前的设备状态照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理中照片</h4>
+                                                    <p>拍摄处理过程中的照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="measure-item">
+                                                <div class="measure-info">
+                                                    <h4>处理后照片</h4>
+                                                    <p>拍摄处理完成后的设备状态照片</p>
+                                                </div>
+                                                <div class="measure-actions">
+                                                    <button class="photo-btn">
+                                                        <img src="image/safety/安措拍照.png" alt="拍照" width="24" height="24">
+                                                        拍照
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 处理结果部分 -->
+                            <div class="work-order-section">
+                                <h3>处理结果</h3>
+                                <div class="feedback-form">
+                                    <div class="form-group">
+                                        <label for="handling-result">处理结果</label>
+                                        <div id="handling-result" class="form-control select-box" data-modal="handling-result-modal">请选择处理结果</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result-description">结果描述</label>
+                                        <textarea id="result-description" class="form-control" rows="3" placeholder="请详细描述处理结果"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="restoration-time">恢复时间</label>
+                                        <input type="datetime-local" id="restoration-time" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="handling-notes">备注</label>
+                                        <textarea id="handling-notes" class="form-control" rows="2" placeholder="请输入其他备注信息"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 表单操作按钮 -->
+                            <div class="work-order-section">
+                                <div class="form-actions">
+                                    <button class="btn btn-secondary">保存草稿</button>
+                                    <button class="btn btn-primary">提交处理结果</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
